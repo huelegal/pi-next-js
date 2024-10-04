@@ -4,6 +4,7 @@
 
   // border: solid 1px #000;
 
+  margin-left: 24px;
   padding: 12px;
   border-radius: 6px;
 
@@ -12,13 +13,13 @@
   transition: 200ms;
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.02);
   }
 }
 
-.inverseButton {
+.button-inverse {
+  margin: 0;
+
   color: #000;
   background-color: #fff;
-
-  border: solid 1px #000;
 }

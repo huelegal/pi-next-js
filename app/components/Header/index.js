@@ -3,19 +3,19 @@ import styles from "./styles.module.scss";
 
 export default function Home() {
   return (
-    <header className={styles.headerContainer}>
+    <header className={styles.header}>
       <div className={styles.logo}>Minha App</div>
       <nav className={styles.nav}>
-        <a className={styles.navLink} href="#home">
+        <a className={styles.link} href="#home">
           Home
         </a>
-        <a className={styles.navLink} href="#about">
+        <a className={styles.link} href="#about">
           Sobre
         </a>
-        <a className={styles.navLink} href="#services">
+        <a className={styles.link} href="#services">
           Serviços
         </a>
-        <a className={styles.navLink} href="#contact">
+        <a className={styles.link} href="#contact">
           Contato
         </a>
         <Button text="Entrar" />

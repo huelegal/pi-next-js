@@ -8,7 +8,7 @@
   &:nth-child(2) {
     height: calc(100vh - 5.75rem);
 
-    background-image: url("../../public/images/hero.jpg");
+    background-image: url("/images/hero.jpg");
     background-position: right top;
     background-repeat: no-repeat;
 
@@ -28,7 +28,7 @@
   z-index: 1;
 }
 
-.leadContainer {
+.lead {
   margin-left: 10rem;
 
   display: flex;
@@ -42,4 +42,24 @@
   h1 {
     font-size: 60px;
   }
+
+  span {
+    font-size: 16px;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.imageContainer {
+  flex: 1;
+  position: relative;
+}
+
+.textContainer {
+  flex: 1;
+  padding: 2rem;
 }
