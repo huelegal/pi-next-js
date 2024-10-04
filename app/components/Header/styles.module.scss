@@ -3,6 +3,7 @@
   justify-content: space-between;
   align-items: center;
 
+  height: 92px;
   padding: 1.5rem 10rem;
 }
 
@@ -14,6 +15,8 @@
 .nav {
   display: flex;
   gap: 1rem;
+
+  align-items: center;
 }
 
 .navLink {
@@ -23,9 +26,13 @@
   text-decoration: none;
   color: #000;
 
-  transition: 300ms;
+  transform: 300ms;
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.02);
   }
+}
+
+.customButton {
+  margin-left: 24px;
 }

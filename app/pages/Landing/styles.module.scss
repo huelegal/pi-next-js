@@ -1,0 +1,28 @@
+.section {
+  display: flex;
+  align-items: center;
+
+  height: 100vh;
+  // border: 1px solid #ccc;
+
+  &:nth-child(2) {
+    height: calc(100vh - 92px);
+  }
+}
+
+.leadContainer {
+  margin-left: 10rem;
+
+  display: flex;
+  flex-direction: column;
+
+  line-height: 60px;
+
+  h1 {
+    font-size: 40px;
+  }
+
+  span {
+    color: #808080;
+  }
+}

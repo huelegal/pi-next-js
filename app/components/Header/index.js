@@ -1,3 +1,4 @@
+import Button from "../Button";
 import styles from "./styles.module.scss";
 
 export default function Home() {
@@ -17,8 +18,8 @@ export default function Home() {
         <a className={styles.navLink} href="#contact">
           Contato
         </a>
+        <Button text="Entrar" className={styles.customButton} />
       </nav>
-      <div>Redes sociais</div>
     </header>
   );
 }

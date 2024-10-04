@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -9,4 +11,8 @@ button,
 input {
   border: 0;
   outline: 0;
+}
+
+body {
+  font-family: "PT Serif", serif;
 }
