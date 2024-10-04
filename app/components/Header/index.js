@@ -18,7 +18,7 @@ export default function Home() {
         <a className={styles.navLink} href="#contact">
           Contato
         </a>
-        <Button text="Entrar" className={styles.customButton} />
+        <Button text="Entrar" />
       </nav>
     </header>
   );

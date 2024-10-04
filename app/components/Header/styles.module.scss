@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
 
-  height: 92px;
+  height: 5.75rem;
   padding: 1.5rem 10rem;
 }
 
@@ -26,10 +26,12 @@
   text-decoration: none;
   color: #000;
 
-  transform: 300ms;
+  transform: transform 300ms;
 
-  &:hover {
-    transform: scale(1.02);
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+    color: #007bff;
   }
 }
 

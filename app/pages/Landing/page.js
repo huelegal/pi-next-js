@@ -7,10 +7,11 @@ export default function Landing() {
     <>
       <Header />
       <section className={styles.section}>
+        <div className={styles.overlay}></div>
         <div className={styles.leadContainer}>
           <h1>Romano's Barber Shop</h1>
           <span>A Barbearia dos Manos</span>
-          <Button text="Descabele-se" className="customButton" />
+          <Button text="Descabele-se" />
         </div>
       </section>
       <section className={styles.section}>morde meu pé</section>
