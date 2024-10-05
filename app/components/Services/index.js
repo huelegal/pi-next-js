@@ -26,7 +26,7 @@ export default function Services() {
   ];
 
   return (
-    <Section className={styles.row}>
+    <Section className="row">
       {services.map((service, index) => (
         <Card
           key={index}

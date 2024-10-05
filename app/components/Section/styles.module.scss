@@ -7,4 +7,9 @@
 
   gap: 5rem;
   height: 100vh;
+
+  &.row {
+    display: flex;
+    flex-direction: row;
+  }
 }

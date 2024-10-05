@@ -1,5 +1,5 @@
-import Grid from "../Grid";
 import Section from "../Section";
+import styles from "./styles.module.scss";
 
 export default function About() {
   const images = [
@@ -24,7 +24,15 @@ export default function About() {
         Venha nos visitar e descubra por que somos mais do que uma barbearia –
         somos um espaço de estilo e camaradagem.
       </p>
-      <Grid images={images} />
+      <div className={styles.grid}>
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className={styles.item}
+            style={{ backgroundImage: `url(${image})` }}
+          ></div>
+        ))}
+      </div>
     </Section>
   );
 }
