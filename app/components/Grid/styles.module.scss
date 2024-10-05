@@ -1,0 +1,31 @@
+.grid {
+  display: grid;
+
+  height: 60%;
+
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+
+  gap: 1rem;
+
+  .item {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    // border: 1px solid #333;
+    border-radius: 1rem;
+
+    background-size: cover;
+    background-position: center;
+
+    width: 24rem;
+
+    &:nth-child(1),
+    &:nth-child(3),
+    &:nth-child(4) {
+      grid-row: span 2;
+    }
+  }
+}

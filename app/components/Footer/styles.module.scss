@@ -1,0 +1,31 @@
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.socialLinks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.socialLinks li a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+
+  &:hover {
+    color: #ccc; /* Cor ao passar o mouse */
+  }
+}
