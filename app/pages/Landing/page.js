@@ -1,6 +1,6 @@
 import Button from "@/app/components/Button";
 import Footer from "@/app/components/Footer";
-import Grid from "@/app/components/About";
+import About from "@/app/components/About";
 import Services from "@/app/components/Services";
 import Header from "../../components/Header";
 import styles from "./styles.module.scss";
@@ -17,7 +17,7 @@ export default function Landing() {
           <Button text="Descabele-se" variant="button-inverse" />
         </div>
       </section>
-      <Grid />
+      <About />
       <Services />
       <Footer />
     </>
