@@ -18,7 +18,7 @@ export default function Home() {
         <a className={styles.link} href="#contact">
           Contato
         </a>
-        <Button text="Entrar" />
+        {/* <Button text="Entrar" /> */}
       </nav>
     </header>
   );

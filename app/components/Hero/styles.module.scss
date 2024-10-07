@@ -1,0 +1,45 @@
+.section {
+  display: flex;
+
+  flex-direction: column;
+  justify-content: center;
+
+  height: 100vh;
+
+  background-image: url("/images/teste2.png");
+  background-size: cover;
+  background-position: center;
+
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.lead {
+  display: flex;
+  flex-direction: column;
+
+  margin: 0 15rem 0;
+  line-height: 66px;
+
+  color: #fff;
+  z-index: 2;
+
+  width: 36rem;
+  font-style: italic;
+
+  h1 {
+    font-size: 66px;
+    font-weight: bold;
+  }
+}

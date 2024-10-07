@@ -5,11 +5,16 @@
   align-items: center;
   justify-content: center;
 
-  gap: 5rem;
+  // padding: 2.5rem 0;
+  margin: 0 15em 0;
+
+  gap: 2.5rem;
   height: 100vh;
 
   &.row {
     display: flex;
     flex-direction: row;
+
+    background-color: pink;
   }
 }

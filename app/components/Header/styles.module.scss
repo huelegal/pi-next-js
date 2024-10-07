@@ -3,8 +3,18 @@
   justify-content: space-between;
   align-items: center;
 
+  width: 100%;
   height: 5.75rem;
-  padding: 1.5rem 10rem;
+
+  padding: 1.5rem 15rem;
+
+  background: none;
+  background-color: transparent;
+
+  z-index: 10;
+  position: absolute;
+
+  color: #fff;
 }
 
 .logo {
@@ -20,17 +30,39 @@
 }
 
 .link {
+  position: relative;
+
   font-size: 1em;
   margin-left: 24px;
 
   text-decoration: none;
-  color: #000;
+  color: #fff;
+  transition: transform 0.3s, color 0.3s;
+}
 
-  transform: transform 300ms;
+.link::after {
+  content: "";
 
-  &:hover,
-  &:focus {
-    transform: scale(1.1);
-    color: #007bff;
-  }
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+
+  height: 2px;
+  width: 100%;
+
+  background-color: #ffa500;
+
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+
+.link:hover::after,
+.link:focus::after {
+  transform: scaleX(1);
+}
+
+.link:hover,
+.link:focus {
+  transform: scale(1.1);
+  color: #ffa500;
 }
