@@ -1,6 +1,7 @@
-import Button from "../Button";
+import Link from "next/link";
 import styles from "./styles.module.scss";
 
+ 
 export default function Home() {
   return (
     <header className={styles.header}>
@@ -18,6 +19,10 @@ export default function Home() {
         <a className={styles.link} href="#contact">
           Contato
         </a>
+        <Link className={styles.link} href="../../pages/Login">        
+            Login
+        </Link>
+
         {/* <Button text="Entrar" /> */}
       </nav>
     </header>

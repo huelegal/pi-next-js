@@ -1,0 +1,158 @@
+// styles/Login.module.scss
+.loginContainer {
+  display: flex;
+  justify-content: center; // Centraliza horizontalmente
+  align-items: center; // Centraliza verticalmente
+  height: 100vh;
+  background-color: #000;
+
+  .formEimg {
+    display: flex;
+    justify-content: center; // Centraliza horizontalmente
+    align-items: center; // Centraliza verticalmente
+    width: 1000px;
+    height: 70%;
+  }
+
+  .imageContainer {
+    border-radius: 0 20px 20px 0;
+    width: 50%; // Largura da coluna de imagem
+    height: 100%; // Altura da coluna de imagem
+    display: flex; // Usar flex para centralizar a imagem
+    justify-content: center; // Centraliza horizontalmente
+    align-items: center; // Centraliza verticalmente
+    overflow: hidden; // Esconde qualquer parte da imagem que ultrapasse a div
+
+    img {
+      object-fit: cover; // Faz a imagem cobrir a div sem esticar
+      width: 100%; // Largura total da div
+      height: 100%; // Altura total da div
+    }
+  }
+  .form {
+    border-radius: 20px 0 0 20px;
+
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    width: 50%; // Largura da coluna de login
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+
+    form {
+      width: 80%; // Largura da coluna de login
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-family: "Arial", sans-serif; // Fonte mais amigável
+      color: #000; // Cor do título
+      font-size: 3rem;
+    }
+
+    .inputCheckBoxContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-top: 1rem;
+      gap: 10px;
+        
+
+      input[type="checkbox"] {
+      
+
+        appearance: none; // Remove o estilo padrão do checkbox
+        width: 10px;
+        height: 10px;
+        position: relative;
+        cursor: pointer;
+        transition: background-color 0.3s, border-color 0.3s;
+
+        &:checked {
+          background-color: #ffa500; // Cor de fundo quando selecionado
+          border-color: #ffa500;
+
+          &::after {
+            content: "x"; // Marca de seleção
+            color: ffa500; // Cor da marca
+            font-size: 16px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+
+        &:focus {
+          outline: none;
+          box-shadow: 0 0 5px rgba(0, 112, 243, 0.5); // Efeito de foco
+        }
+      }
+
+      label{
+        display: flex;
+        flex-direction: row;
+ 
+        font-size: 0.7rem;
+        margin: none;
+       }
+    }
+
+    p {
+      margin-top: 1rem;
+      color: #000;
+      font-size: 0.7rem;
+      a {
+        color: #ffa500;
+        cursor: pointer;
+      }
+    }
+
+    .inputGroup {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      label {
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #000; // Cor da label
+      }
+
+      input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none; // Remove a borda padrão
+        transition: border-color 0.3s; // Transição suave para a borda
+
+        &:focus {
+          border-color: #ffa500; // Borda azul ao focar
+        }
+      }
+    }
+
+    .submitButton {
+      padding: 1rem;
+      background-color: #000;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s; // Transição suave para a cor do fundo
+
+      &:hover {
+        background-color: #ffa500; // Escurece ao passar o mouse
+      }
+    }
+  }
+}
