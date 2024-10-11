@@ -1,23 +1,43 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "./styles.module.scss";
 import Link from "next/link";
 
-export default function Login() {
+export default function Login({ onClose }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const formRef = useRef(null);
+  const modalRef = useRef(null); // Ref para o contêiner do modal
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Lógica de autenticação
     console.log("Email:", email, "Password:", password);
   };
 
+  // Efeito para fechar o modal ao clicar fora dele
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // Verifica se o clique foi do botão esquerdo (0)
+      if (
+        event.button === 0 &&
+        modalRef.current &&
+        !modalRef.current.contains(event.target)
+      ) {
+        onClose(); // Fecha o modal
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [onClose]);
+
   return (
-    <div className={styles.loginContainer}>
+    <div className={styles.loginContainer} ref={modalRef}>
       <div className={styles.formEimg}>
-        <div className={styles.form}>
+        <div className={styles.form} ref={formRef}>
           <h2>Login</h2>
           <form onSubmit={handleSubmit}>
             <div className={styles.inputGroup}>
@@ -30,7 +50,7 @@ export default function Login() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className={styles.input} // Adicionando uma classe para os inputs
+                className={styles.input}
               />
             </div>
             <div className={styles.inputGroup}>
@@ -41,14 +61,14 @@ export default function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className={styles.input} // Adicionando uma classe para os inputs
+                className={styles.input}
               />
               <div className={styles.inputCheckBoxContainer}>
-                <input type="checkbox"></input>
+                <input type="checkbox" />
                 <label className={styles.labelCheckbox}>Lembrar Senha</label>
               </div>
               <p>
-                Não possui conta? <a> Cadastrar</a>
+                Não possui conta? <Link href="/register">Cadastrar</Link>
               </p>
             </div>
             <button type="submit" className={styles.submitButton}>
@@ -57,6 +77,9 @@ export default function Login() {
           </form>
         </div>
         <div className={styles.imageContainer}>
+          <button className={styles.closeButton} onClick={onClose}>
+            {"x"}
+          </button>
           <img src="/images/loginImage.png" alt="Imagem de login" />
         </div>
       </div>

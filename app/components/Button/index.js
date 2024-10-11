@@ -1,9 +1,11 @@
 import styles from "./styles.module.scss";
 
-export default function Button({ text, variant }) {
+export default function Button({ onClick, text, variant }) {
   const buttonClass = styles[variant];
 
   return (
-    <button className={`${styles.button} ${styles[variant]}`}>{text}</button>
+    <button onClick={onClick} className={`${styles.button} ${styles[variant]}`}>
+      {text}
+    </button>
   );
 }

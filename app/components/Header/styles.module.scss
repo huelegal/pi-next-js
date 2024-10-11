@@ -66,3 +66,23 @@
   transform: scale(1.1);
   color: #ffa500;
 }
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); // Fundo semi-transparente
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; // Certifique-se de que a modal está acima de outros elementos
+}
+
+.modalContent {
+  background: transparent;
+  padding: 20px;
+  border-radius: 5px;
+  position: relative;
+}
