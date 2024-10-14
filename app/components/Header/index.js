@@ -5,15 +5,24 @@ import Login from "../../pages/Login/page"; // Verifique se o caminho está corr
 import styles from "./styles.module.scss";
 import Button from "../Button";
 
-export default function Home() {
+export default function Header() {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
 
   const toggleModal = () => {
-    setModalOpen(!isModalOpen);
+    if (isModalOpen) {
+      closeModal();
+    } else {
+      setModalOpen(true);
+    }
   };
 
   const closeModal = () => {
-    setModalOpen(false);
+    setIsClosing(true);
+    setTimeout(() => {
+      setModalOpen(false);
+      setIsClosing(false);
+    }, 300); // Tempo igual ao da animação de saída
   };
 
   return (
@@ -38,8 +47,16 @@ export default function Home() {
       </header>
 
       {isModalOpen && (
-        <div className={styles.modal}>
-          <div className={styles.modalContent}>
+        <div
+          className={`${styles.modal} ${
+            isClosing ? styles.close : styles.open
+          }`}
+        >
+          <div
+            className={`${styles.modalContent} ${
+              isClosing ? styles.fadeOut : styles.fadeIn
+            }`}
+          >
             <Login onClose={closeModal} />
           </div>
         </div>

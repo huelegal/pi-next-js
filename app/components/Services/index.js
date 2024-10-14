@@ -1,4 +1,4 @@
-import Card from "../Card";
+import Card from "../AboutCard";
 import Section from "../Section";
 
 export default function Services() {

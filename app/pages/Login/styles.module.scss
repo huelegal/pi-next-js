@@ -66,6 +66,7 @@
 
       input[type="checkbox"] {
         appearance: none; // Remove o estilo padrão do checkbox
+        margin: 0;
         width: 10px;
         height: 10px;
         position: relative;
@@ -115,13 +116,14 @@
       width: 100%;
 
       label {
-        margin-bottom: 5px;
+        // margin-bottom: 5px;
         font-weight: bold;
         color: #000; // Cor da label
       }
 
       input {
         padding: 10px;
+        margin-top: 5px;
         border: 1px solid #ccc;
         border-radius: 5px;
         outline: none; // Remove a borda padrão

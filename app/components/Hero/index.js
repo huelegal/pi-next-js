@@ -1,4 +1,3 @@
-import Button from "@/app/components/Button";
 import styles from "./styles.module.scss";
 
 export default function Hero() {

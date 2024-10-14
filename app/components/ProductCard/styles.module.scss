@@ -1,0 +1,86 @@
+.card {
+  border: 1px solid #ccc; /* Borda ao redor do card */
+  border-radius: 8px; /* Bordas arredondadas */
+  padding: 16px; /* Espaçamento interno do card */
+  transition: box-shadow 0.3s; /* Transição suave para sombra */
+  display: flex; /* Usar flexbox para o layout */
+  flex-direction: column; /* Dispor os itens em coluna */
+
+  width: 21rem;
+
+  flex-grow: 0;
+  overflow: hidden;
+
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra ao passar o mouse */
+  }
+}
+
+.image {
+  width: 100%; /* Largura total do card */
+  height: auto; /* Altura automática para manter a proporção */
+  border-radius: 8px; /* Bordas arredondadas da imagem */
+}
+
+.title {
+  font-size: 1.5rem; /* Tamanho da fonte do título */
+  margin: 12px 0 4px;
+}
+
+.description {
+  font-size: 0.9rem; /* Tamanho da fonte da descrição */
+  color: #666; /* Cor da descrição */
+  margin: 4px 0; /* Margem acima e abaixo da descrição */
+}
+
+.rating {
+  margin: 0; /* Margem acima e abaixo da avaliação */
+}
+
+.star {
+  color: gold; /* Cor das estrelas */
+  font-size: 1.25rem; /* Tamanho das estrelas */
+}
+
+.price {
+  font-size: 1.25rem; /* Tamanho da fonte do preço */
+  color: #000; /* Cor do preço */
+  margin: 0 0 8px; /* Margem acima e abaixo do preço */
+  font-style: bold;
+}
+
+.parcel {
+  color: #333;
+  font-size: 0.8rem;
+}
+
+.freeShipping {
+  font-size: 0.875rem; /* Tamanho da fonte para frete grátis */
+  color: green; /* Cor do texto para frete grátis */
+  margin: 0.5rem 0; /* Margem acima e abaixo do frete grátis */
+}
+
+.addButton {
+  background-color: #ffa500; /* Cor de fundo do botão */
+  color: white; /* Cor do texto do botão */
+  border: none; /* Sem borda */
+  padding: 10px 20px; /* Espaçamento interno do botão */
+  border-radius: 5px; /* Bordas arredondadas do botão */
+  cursor: pointer; /* Muda o cursor para mão ao passar sobre o botão */
+  transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+  text-align: center;
+  margin-top: 10px; /* Espaçamento acima do botão */
+
+  &:hover {
+    background-color: #ff8c00; /* Cor de fundo ao passar o mouse */
+  }
+}
+
+.highlight {
+  // background-color: #ffa500;
+  // margin: 2rem 0;
+  color: #333; /* Cor do texto */
+  font-size: 12px;
+}

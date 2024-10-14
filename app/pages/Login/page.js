@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
-import styles from "./styles.module.scss";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import styles from "./styles.module.scss";
 
 export default function Login({ onClose }) {
   const [email, setEmail] = useState("");
@@ -68,7 +68,7 @@ export default function Login({ onClose }) {
                 <label className={styles.labelCheckbox}>Lembrar Senha</label>
               </div>
               <p>
-                Não possui conta? <Link href="/register">Cadastrar</Link>
+                Não possui conta? <Link href="/register">Crie uma agora!</Link>
               </p>
             </div>
             <button type="submit" className={styles.submitButton}>

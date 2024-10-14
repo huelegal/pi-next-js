@@ -1,0 +1,9 @@
+.productList {
+  display: flex;
+  flex-wrap: wrap; /* Permite que os cards se quebrem para a linha seguinte */
+  align-items: flex-start; /* Alinha os cards no topo */
+  justify-content: center; /* Centraliza os cards horizontalmente */
+  gap: 16px;
+
+  // height: 100vh;
+}

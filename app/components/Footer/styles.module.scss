@@ -1,31 +1,63 @@
 .footer {
-  background-color: #333;
-  color: white;
-  padding: 1rem 0;
-  text-align: center;
+  background-color: #000; /* Cor de fundo do footer */
+  color: #ffffff; /* Cor do texto */
+  padding: 3rem 15rem;
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
+  display: flex;
+  justify-content: space-around; /* Espaçamento entre as seções */
+  flex-wrap: wrap; /* Permite que as seções quebrem em dispositivos menores */
+}
+
+.footerSection {
+  flex: 1;
+  min-width: 200px; /* Largura mínima para as seções */
+  margin: 0 1rem;
+
+  h4 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem; /* Tamanho do título */
+  }
+
+  ul {
+    list-style: none; /* Remove marcadores da lista */
+    padding: 0; /* Remove padding da lista */
+
+    li {
+      margin-bottom: 0.5rem; /* Espaçamento entre os links */
+    }
+
+    a {
+      color: #fff; /* Cor dos links */
+      text-decoration: none; /* Remove underline dos links */
+      transition: color 0.3s; /* Transição suave para a cor */
+
+      &:hover {
+        color: #ffa500; /* Cor dos links ao passar o mouse */
+      }
+    }
+  }
+}
+
+.footerBottom {
+  text-align: center; /* Centraliza o texto no rodapé */
+  margin-top: 2.5rem; /* Espaçamento superior */
+
+  font-style: italic;
 }
 
 .socialLinks {
-  list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
+  gap: 1rem; /* Espaçamento entre os ícones */
 
-.socialLinks li a {
-  color: white;
-  text-decoration: none;
-  transition: color 0.3s;
+  a {
+    color: #ffa500; /* Cor dos ícones */
+    font-size: 1.5rem; /* Tamanho dos ícones */
+    transition: color 0.3s;
 
-  &:hover {
-    color: #ccc; /* Cor ao passar o mouse */
+    &:hover {
+      color: #ffdd57; /* Cor ao passar o mouse */
+    }
   }
 }

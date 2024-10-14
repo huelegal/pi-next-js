@@ -67,22 +67,69 @@
   color: #ffa500;
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+}
+
 .modal {
   position: fixed;
+
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5); // Fundo semi-transparente
+
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; // Certifique-se de que a modal está acima de outros elementos
+
+  background-color: rgba(0, 0, 0, 0);
+
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+
+  &.open {
+    opacity: 1;
+    visibility: visible;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  &.close {
+    opacity: 0;
+    visibility: visible;
+    background-color: rgba(0, 0, 0, 0);
+  }
 }
 
 .modalContent {
-  background: transparent;
-  padding: 20px;
-  border-radius: 5px;
-  position: relative;
+  padding: 18px;
+  border-radius: 6px;
+
+  &.fadeIn {
+    animation: fadeInUp 0.3s ease forwards;
+  }
+
+  &.fadeOut {
+    animation: fadeOutDown 0.3s ease forwards;
+  }
 }

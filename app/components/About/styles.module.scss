@@ -15,8 +15,12 @@
     align-items: center;
     justify-content: center;
 
+    height: 100%;
+
     // border: 1px solid #333;
     // border-radius: 1rem;
+
+    aspect-ratio: 16 / 9; // Exemplo para uma proporção 16:9
 
     background-size: cover;
     background-position: center;
