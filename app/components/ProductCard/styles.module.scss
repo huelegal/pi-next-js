@@ -6,7 +6,7 @@
   display: flex; /* Usar flexbox para o layout */
   flex-direction: column; /* Dispor os itens em coluna */
 
-  width: 21rem;
+  min-width: 15rem;
 
   flex-grow: 0;
   overflow: hidden;

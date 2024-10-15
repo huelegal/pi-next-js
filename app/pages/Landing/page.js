@@ -9,7 +9,7 @@ import Services from "@/app/components/Services";
 export default function Landing() {
   return (
     <>
-      <Header />
+      <Header isAbsolute={true} />
       <Hero />
       <ProductList />
       {/* <About /> */}

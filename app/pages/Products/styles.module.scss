@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  margin-bottom: 4rem;
+}
+
+.sidebar {
+  width: 20%;
+}
+
+.content {
+  width: 80%;
+  padding: 0 4rem;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    margin-left: 3rem;
+  }
+}

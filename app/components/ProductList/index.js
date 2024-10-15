@@ -1,39 +1,20 @@
 import ProductCard from "../ProductCard";
 import styles from "./styles.module.scss";
 
-const products = [
-  {
-    id: 1,
-    title: "Produto 1",
-    price: 29.99,
-    installments: 4, // Número de parcelas
-  },
-  {
-    id: 2,
-    title: "Produto 2",
-    price: 49.99,
-    installments: 5,
-  },
-  {
-    id: 3,
-    title: "Produto 3",
-    price: 19.99,
-    installments: 3,
-  },
-  {
-    id: 4,
-    title: "Produto 4",
-    price: 39.99,
-    installments: 6,
-  },
-  // Adicione mais produtos conforme necessário
-];
-
+// Não precisamos mais declarar os produtos manualmente, pois eles serão gerados dinamicamente
 export default function ProductList() {
   return (
     <div className={styles.productList}>
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
+      {Array.from({ length: 20 }).map((_, index) => (
+        <ProductCard
+          key={index + 1} // Garante que a chave seja única
+          product={{
+            id: index + 1,
+            title: `Produto ${index + 1}`,
+            price: 29.99,
+            installments: 4,
+          }}
+        />
       ))}
     </div>
   );
