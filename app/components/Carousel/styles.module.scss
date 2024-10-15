@@ -1,0 +1,37 @@
+.carousel {
+    position: relative;
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+  
+    .imageWrapper {
+      width: 100%;
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+    }
+  
+    .prevButton,
+    .nextButton {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 24px;
+      z-index: 1;
+    }
+  
+    .prevButton {
+      left: 0;
+    }
+  
+    .nextButton {
+      right: 0;
+    }
+  }
