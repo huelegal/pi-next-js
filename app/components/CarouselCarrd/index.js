@@ -5,7 +5,7 @@ import { useState } from "react";
 import styles from "./styles.module.scss";
 import ProductCard from "@/app/components/ProductCard"; // Importe o ProductCard
 
-export default function CardCarousel({ products, customStyles }) {
+export default function CarouselCard({ products, customStyles }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {

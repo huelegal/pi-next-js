@@ -1,0 +1,32 @@
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+}
+
+.button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 2rem;
+  margin: 0 2rem;
+}
+
+.cardContainer {
+  display: flex;
+  transition: transform 0.5s ease-in-out; // Transição suave para o slide
+  width: 100%; // Garante que os cards ocupem o espaço necessário
+}
+
+.cardContainer > div {
+  min-width: 20%; // Ajuste a largura dos cards (percentual do contêiner visível)
+  box-sizing: border-box;
+}
+
+.imageContainer {
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}

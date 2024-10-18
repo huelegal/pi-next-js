@@ -3,7 +3,7 @@
 import { useState } from "react";
 import styles from "./styles.module.scss";
 
-export default function ImageCarousel({ products, customStyles }) {
+export default function CarouselImage({ products, customStyles }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToSlide = (index) => {

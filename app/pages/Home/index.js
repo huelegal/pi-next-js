@@ -1,9 +1,8 @@
-import Carousel from "@/app/components/CardCarousel";
+import CarouselCard from "@/app/components/CarouselCarrd";
+import CarouselImage from "@/app/components/CarouselImage";
 import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
 import styles from "./styles.module.scss";
-import CardCarousel from "@/app/components/CardCarousel";
-import ImageCarousel from "@/app/components/ImageCarousel";
 
 export default function Home() {
   const products = [
@@ -20,13 +19,48 @@ export default function Home() {
       <Header isLoggedIn={true} />
       <nav className={styles.navBar}>{/* links e drop down do navbar */}</nav>
 
-      {/* Carousel de imagens */}
-      <ImageCarousel products={products} />
+      <CarouselImage products={products} />
 
-      {/* Carousel de cards */}
-      <CardCarousel products={products} />
+      <div className={styles.content}>
+        <h1>Somente o melhor parta sua barba e cabelo.</h1>
+        <div className={styles.carousel}>
+          <CarouselCard products={products} />
+        </div>
 
-      {/* componentizar o navbar */}
+        <div className={styles.carousel}>
+          <h3>Destaques</h3>
+          <CarouselCard products={products} />
+        </div>
+
+        <div className={styles.adsContainer}>
+          <div className={styles.ad}>
+            <img
+              src="https://via.placeholder.com/400x200?text=Ad+1"
+              alt="Ad 1"
+            />
+          </div>
+          <div className={styles.ad}>
+            <img
+              src="https://via.placeholder.com/400x200?text=Ad+2"
+              alt="Ad 2"
+            />
+          </div>
+        </div>
+
+        <div className={styles.carousel}>
+          <h3>Mais procurados</h3>
+          <CarouselCard products={products} />
+        </div>
+
+        <div className={styles.adsContainer}>
+          <div className={styles.ad}>
+            <img
+              src="https://via.placeholder.com/400x200?text=Ad+1"
+              alt="Ad 1"
+            />
+          </div>
+        </div>
+      </div>
       <Footer />
     </>
   );
