@@ -1,21 +1,12 @@
-.homeContainer {
+.imageContainer {
   width: 100%;
-  height: 100vh;
+  height: 30rem;
+  background-color: black;
+}
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
- 
-  .imageContainer{
-    width: 100%;
-    height: 30rem;
-    background-color: black;
-  }
+.navBar {
+  width: 100%;
+  height: 3rem;
 
-  .navBar{
-    width: 100%;
-    height: 3rem;
-
-    background-color: blue;
-  }
+  background-color: blue;
 }

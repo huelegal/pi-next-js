@@ -1,0 +1,44 @@
+// styles.module.scss
+
+.carousel {
+  position: relative; // Necessário para posicionar os indicadores
+  width: 100%;
+  overflow: hidden; // Garante que a imagem não transborde
+}
+
+.cardContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px; // Ajuste conforme necessário
+}
+
+.imageContainer {
+  width: 100%;
+  height: 100%; // Preenche a altura do contêiner
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.5s ease-in-out; /* Transição suave */
+}
+
+.indicators {
+  position: absolute;
+  bottom: 20px; // Ajuste a posição vertical conforme necessário
+  right: 20px; // Ajuste a posição horizontal conforme necessário
+  display: flex;
+  gap: 8px; // Espaçamento entre as bolinhas
+  z-index: 10; // Para garantir que apareçam sobre a imagem
+}
+
+.indicator {
+  width: 10px; // Tamanho da bolinha
+  height: 10px;
+  border-radius: 50%; // Deixa redonda
+  background-color: rgba(255, 255, 255, 0.5); // Cor padrão das bolinhas
+  cursor: pointer; // Cursor indicando que é clicável
+  transition: background-color 0.3s; // Transição suave ao mudar a cor
+}
+
+.indicator.active {
+  background-color: rgba(255, 255, 255, 1); // Cor da bolinha ativa
+}
