@@ -9,9 +9,9 @@
 
   background: none;
   background-color: transparent;
+  // color: #fff;
 
   z-index: 10;
-  // color: #fff;
 }
 
 .absolute {
@@ -39,7 +39,7 @@
   margin-left: 24px;
 
   text-decoration: none;
-  // color: #fff;
+  color: #fff;
   transition: transform 0.3s, color 0.3s;
 }
 
@@ -75,6 +75,7 @@
     opacity: 0;
     transform: translateY(50px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -86,6 +87,7 @@
     opacity: 1;
     transform: translateY(0);
   }
+
   to {
     opacity: 0;
     transform: translateY(50px);
@@ -139,7 +141,8 @@
 
 .searchInput {
   padding: 0.5rem 1rem;
-  margin: 0 1rem; /* Margem para espaço entre a barra de busca e os ícones */
+  margin: 0 1rem;
+  /* Margem para espaço entre a barra de busca e os ícones */
   border: 1px solid #ccc;
   border-radius: 1rem;
   outline: none;
@@ -147,9 +150,12 @@
 }
 
 .icon {
-  font-size: 1.5rem; /* Tamanho do ícone */
-  margin-left: 1rem; /* Espaço entre os ícones */
-  cursor: pointer; /* Muda o cursor para indicar que é clicável */
+  font-size: 1.5rem;
+  /* Tamanho do ícone */
+  margin-left: 1rem;
+  /* Espaço entre os ícones */
+  cursor: pointer;
+  /* Muda o cursor para indicar que é clicável */
 
   transition: all 0.3s;
 
