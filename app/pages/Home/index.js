@@ -15,7 +15,7 @@ export default function Home() {
   ];
 
   return (
-    <>
+    <div className={styles.wrapper}>
       <Header isLoggedIn={true} />
       <nav className={styles.navBar}>{/* links e drop down do navbar */}</nav>
 
@@ -62,6 +62,6 @@ export default function Home() {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }

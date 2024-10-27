@@ -71,14 +71,12 @@ export default function Header({ isAbsolute, isLoggedIn }) {
 
       {isModalOpen && (
         <div
-          className={`${styles.modal} ${
-            isClosing ? styles.close : styles.open
-          }`}
+          className={`${styles.modal} ${isClosing ? styles.close : styles.open
+            }`}
         >
           <div
-            className={`${styles.modalContent} ${
-              isClosing ? styles.fadeOut : styles.fadeIn
-            }`}
+            className={`${styles.modalContent} ${isClosing ? styles.fadeOut : styles.fadeIn
+              }`}
           >
             <Login onClose={closeModal} />
           </div>

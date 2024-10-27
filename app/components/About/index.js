@@ -14,7 +14,7 @@ export default function About() {
   return (
     <Section>
       <h1>Sobre Nós</h1>
-      <p>
+      <p className={styles.text}>
         Bem-vindo à [Nome da Barbearia], onde tradição e estilo se encontram.
         Nossa equipe de barbeiros apaixonados oferece cortes e cuidados
         personalizados, combinando técnicas clássicas e modernas em um ambiente
