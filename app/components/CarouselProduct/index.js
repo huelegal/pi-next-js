@@ -6,28 +6,32 @@ import styles from "./styles.module.scss";
 
 export default function ProductCarousel({ products }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const visibleProducts = 5;
+  const visibleProducts = 5; // número de produtos visíveis de uma vez
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex + visibleProducts < products.length ? prevIndex + visibleProducts : 0
+      prevIndex + visibleProducts < products.length ? prevIndex + 1 : 0
     );
   };
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex - visibleProducts >= 0 ? prevIndex - visibleProducts : products.length - visibleProducts
+      prevIndex > 0 ? prevIndex - 1 : products.length - visibleProducts
     );
   };
 
-  const displayedProducts = products.slice(currentIndex, currentIndex + visibleProducts);
+  // Calcula os produtos visíveis com base no índice atual
+  const displayedProducts = products.slice(
+    currentIndex,
+    currentIndex + visibleProducts
+  );
 
   return (
     <div className={styles.carousel}>
       <button onClick={prevSlide} className={styles.navButton}>{"<"}</button>
       <div className={styles.productContainer}>
-        {displayedProducts.map((product) => (
-          <div key={product.id} className={styles.product}>
+        {displayedProducts.map((product, index) => (
+          <div key={index} className={styles.product}>
             <img src={product.image} alt={product.title} />
             <p>{product.title}</p>
           </div>
