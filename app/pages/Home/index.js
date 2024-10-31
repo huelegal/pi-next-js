@@ -3,6 +3,7 @@ import CarouselImage from "@/app/components/CarouselImage";
 import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
 import styles from "./styles.module.scss";
+import Navbar from "@/app/components/NavBar";
 
 export default function Home() {
   const products = [
@@ -17,43 +18,58 @@ export default function Home() {
   return (
     <div className={styles.wrapper}>
       <Header isLoggedIn={true} />
-      <nav className={styles.navBar}>{/* links e drop down do navbar */}</nav>
-
-      <CarouselImage products={products} />
+      <Navbar/>
 
       <div className={styles.content}>
-        <h1>Somente o melhor parta sua barba e cabelo.</h1>
+        <div>
+          <h1>Os melhores produtos para sua barba e cabelo</h1>
+        </div>
+        <h3>Destaques</h3>
         <div className={styles.carousel}>
           <CarouselCard products={products} />
         </div>
 
         <div className={styles.carousel}>
-          <h3>Destaques</h3>
+          <h3>Mais Procurados</h3>
+
           <CarouselCard products={products} />
         </div>
 
-        <div className={styles.adsContainer}>
-          <div className={styles.ad}>
-            <img
-              src="https://via.placeholder.com/400x200?text=Ad+1"
-              alt="Ad 1"
-            />
+        <div className={styles.adsContainerContent}>
+          <div className={styles.adsContainer}>
+            <div className={styles.ad}>
+              <img
+                src="https://via.placeholder.com/400x200?text=Ad+2"
+                alt="Ad 1"
+              />
+            </div>
+            <div className={styles.ad}>
+              <img
+                src="https://via.placeholder.com/400x200?text=Ad+2"
+                alt="Ad 1"
+              />
+            </div>
+            <div className={styles.ad}>
+              <img
+                src="https://via.placeholder.com/400x200?text=Ad+2"
+                alt="Ad 1"
+              />
+            </div>
+            <div className={styles.ad}>
+              <img
+                src="https://via.placeholder.com/400x200?text=Ad+2"
+                alt="Ad 1"
+              />
+            </div>
           </div>
-          <div className={styles.ad}>
-            <img
-              src="https://via.placeholder.com/400x200?text=Ad+2"
-              alt="Ad 2"
-            />
-          </div>
         </div>
 
         <div className={styles.carousel}>
-          <h3>Mais procurados</h3>
           <CarouselCard products={products} />
         </div>
 
-        <div className={styles.adsContainer}>
-          <div className={styles.ad}>
+        <div className={`${styles.adsContainer} ${styles.singleContainer}`}>
+          <div className={`${styles.ad} ${styles.singleAd}`}>
             <img
               src="https://via.placeholder.com/400x200?text=Ad+1"
               alt="Ad 1"

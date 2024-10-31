@@ -7,10 +7,10 @@ import ProductDescription from "./pages/ProductDescription/page";
 export default function Home() {
   return (
     <>
-      {/* <HomePage /> */}
+      <HomePage />
       {/* <Landing /> */}
       {/* <Products /> */}
-      <ProductDescription/>
+      {/* <ProductDescription/> */}
       {/* <Cart /> */}
     </>
   );

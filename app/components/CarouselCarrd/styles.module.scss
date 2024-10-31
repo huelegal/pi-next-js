@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  
   position: relative;
 }
 
@@ -16,6 +17,9 @@
 
 .cardContainer {
   display: flex;
+   justify-content: center;
+  flex-direction: row;
+  gap: 2.5rem;
   transition: transform 0.5s ease-in-out; // Transição suave para o slide
   width: 100%; // Garante que os cards ocupem o espaço necessário
 }

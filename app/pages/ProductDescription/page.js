@@ -3,6 +3,7 @@
 import Header from "@/app/components/Header";
 import styles from "./styles.module.scss";
 import ProductCarousel from "@/app/components/CarouselProduct";
+import VerticalCarousel from "@/app/components/VerticalCarousel";
 
 export default function ProductDescription() {
   const relatedProducts = [
@@ -38,6 +39,9 @@ export default function ProductDescription() {
     },
   ];
 
+  // Extrair apenas as URLs das imagens
+  const imageUrls = relatedProducts.map((product) => product.image);
+
   return (
     <>
       <Header />
@@ -54,6 +58,7 @@ export default function ProductDescription() {
           <section className={styles.containersection1}>
             <div className={styles.section1}>
               <div className={styles.imageContainer}>
+                <VerticalCarousel images={imageUrls} />{" "}
                 <img
                   src={
                     "/images/gel-fixador-condicionante-acao-prolongad-300x615x-71388.png"
