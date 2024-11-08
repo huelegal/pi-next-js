@@ -1,5 +1,5 @@
 import Card from "../AboutCard";
-import Section from "../Section";
+import styles from "./styles.module.scss";
 
 export default function Services() {
   const services = [
@@ -16,7 +16,7 @@ export default function Services() {
     {
       image: "/images/navalha.png",
       title: "Pacotes Especiais",
-      desc: "Combine corte de cabelo e barba por um preço especial. Venha para a [Nome da Barbearia].",
+      desc: "Combine corte de cabelo e barba por um preço especial.",
     },
     {
       image: "/images/secador-de-cabelo.png",
@@ -26,15 +26,18 @@ export default function Services() {
   ];
 
   return (
-    <Section className="row">
-      {services.map((service, index) => (
-        <Card
-          key={index}
-          image={service.image}
-          title={service.title}
-          desc={service.desc}
-        />
-      ))}
-    </Section>
+    <section className={styles.sectionServices}>
+      <h2 className="LogoSection">Serviços</h2>
+      <div className={styles.cardServices}>
+        {services.map((service, index) => (
+          <Card
+            key={index}
+            image={service.image}
+            title={service.title}
+            desc={service.desc}
+          />
+        ))}
+      </div>
+    </section>
   );
 }

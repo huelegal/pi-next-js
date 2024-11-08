@@ -7,8 +7,8 @@ import ProductDescription from "./pages/ProductDescription/page";
 export default function Home() {
   return (
     <>
-      <HomePage />
       {/* <Landing /> */}
+      <HomePage />
       {/* <Products /> */}
       {/* <ProductDescription/> */}
       {/* <Cart /> */}
