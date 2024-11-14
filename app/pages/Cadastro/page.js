@@ -113,9 +113,7 @@ export default function Cadastro({ onClose }) {
                 required
                 className={styles.input}
               />
-              <p>
-                <Link href="">Esqueci a senha</Link>
-              </p>
+
             </div>
             <button type="submit" className={styles.submitButton}>
               Cadastrar
