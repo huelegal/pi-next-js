@@ -13,34 +13,35 @@ export default function Login({ onClose }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    try { 
-      const response = await fetch("http://localhost:8093/api/users/login", { // Substitua pela URL da sua API
+
+    try {
+      const response = await fetch("http://localhost:8093/api/users/login", {
+        // Substitua pela URL da sua API
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
       });
-  
+
       // Verifica se o tipo de conteúdo da resposta é JSON antes de tentar parseá-lo
       const contentType = response.headers.get("content-type");
       let data;
-  
+
       if (contentType && contentType.includes("application/json")) {
         data = await response.json();
       } else {
         data = await response.text(); // Alternativa para casos de erro em outro formato
       }
-  
+
       setLoginStatus(response.status); // Armazena o status HTTP
       console.log("Resposta:", data);
-  
+
       if (response.ok) {
         console.log("Login bem-sucedido");
 
-              // Cria uma string formatada com as informações para o alert
-            const userInfo = `
+        // Cria uma string formatada com as informações para o alert
+        const userInfo = `
             ID: ${data.id}
             Nome: ${data.name}
             Email: ${data.email}
@@ -51,14 +52,14 @@ export default function Login({ onClose }) {
             CEP: ${data.address.postalCode}
             País: ${data.address.country}
           `;
-        
-          // Exibe um alerta com as informações do usuário
-          alert(userInfo);
+
+        // Exibe um alerta com as informações do usuário
+        alert(userInfo);
       } else {
         alert(data);
       }
     } catch (error) {
-      alert("Erro nos servidor")
+      alert("Erro nos servidor");
     }
   };
 
@@ -115,7 +116,11 @@ export default function Login({ onClose }) {
                 <label className={styles.labelCheckbox}>Lembrar Senha</label>
               </div>
               <p>
-                Não possui conta? <Link href="/pages/Cadastro">Crie uma agora!</Link>
+                Não possui conta?{" "}
+                <Link href="/pages/Cadastro">Crie uma agora!</Link>
+              </p>{" "}
+              <p>
+                Esqueceu a senha?<Link href="/pages/AlterarCadastro"> Recuperar senha </Link>
               </p>
             </div>
             <button type="submit" className={styles.submitButton}>
