@@ -3,6 +3,8 @@
 
 import React, { useState } from "react";
 import styles from "./styles.module.scss";
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 
 export default function ProductCarousel({ products }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -28,7 +30,7 @@ export default function ProductCarousel({ products }) {
 
   return (
     <div className={styles.carousel}>
-      <button onClick={prevSlide} className={styles.navButton}>{"<"}</button>
+      <button onClick={prevSlide} className={styles.navButton}><KeyboardArrowLeftIcon/></button>
       <div className={styles.productContainer}>
         {displayedProducts.map((product, index) => (
           <div key={index} className={styles.product}>
@@ -37,7 +39,7 @@ export default function ProductCarousel({ products }) {
           </div>
         ))}
       </div>
-      <button onClick={nextSlide} className={styles.navButton}>{">"}</button>
+      <button onClick={nextSlide} className={styles.navButton}><KeyboardArrowRightIcon/></button>
     </div>
   );
 }

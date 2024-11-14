@@ -1,0 +1,21 @@
+.sectionServices{
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+
+    h2{
+        margin-bottom: 6rem;
+    }
+}
+
+.cardServices{
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
+
+}
+

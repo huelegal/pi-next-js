@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaUser, FaShoppingCart } from "react-icons/fa"; // Importando ícones da biblioteca react-icons
 import Login from "../../pages/Login/page"; // Verifique se o caminho está correto
 import styles from "./styles.module.scss";
@@ -9,7 +9,8 @@ import Button from "../Button";
 export default function Header({ isAbsolute, isLoggedIn }) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
-
+ 
+ 
   const toggleModal = () => {
     if (isModalOpen) {
       closeModal();

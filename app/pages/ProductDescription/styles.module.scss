@@ -34,9 +34,10 @@
     
       .imageContainer{
          display: flex;
-         justify-content: center;
+         justify-content:  space-around;
+         
          .imageProduct {
-          width: 400px;
+          width: 500px;
         }
       }
      
@@ -124,6 +125,13 @@
             padding: 1rem;
             width: 10rem;
             border-radius: 4px;
+            cursor: pointer;
+            transition: 500ms ease;
+          }
+
+          button:hover{
+            background-color: #f19e04;
+            
           }
         
         }

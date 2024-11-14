@@ -20,9 +20,9 @@ export default function CarouselCard({ products, customStyles }) {
 
   const getVisibleProducts = () => {
     return products
-      .slice(currentIndex, currentIndex + 5)
+      .slice(currentIndex, currentIndex + 4)
       .concat(
-        products.slice(0, Math.max(0, currentIndex + 5 - products.length))
+        products.slice(0, Math.max(0, currentIndex + 4 - products.length))
       );
   };
 
