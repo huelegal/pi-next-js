@@ -1,71 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import styles from "./styles.module.scss";
+import { useState, useRef, useEffect } from "react";
+ import styles from "./styles.module.scss";
+import { useRouter } from "next/router";
 
-export default function Login({ onClose }) {
+export default function Cadastro({ onClose }) {
+  const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginStatus, setLoginStatus] = useState(null); // Estado para armazenar o retorno HTTP
   const formRef = useRef(null);
   const modalRef = useRef(null); // Ref para o contêiner do modal
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    try { 
-      const response = await fetch("http://localhost:8093/api/users/login", { // Substitua pela URL da sua API
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-  
-      // Verifica se o tipo de conteúdo da resposta é JSON antes de tentar parseá-lo
-      const contentType = response.headers.get("content-type");
-      let data;
-  
-      if (contentType && contentType.includes("application/json")) {
-        data = await response.json();
-      } else {
-        data = await response.text(); // Alternativa para casos de erro em outro formato
-      }
-  
-      setLoginStatus(response.status); // Armazena o status HTTP
-      console.log("Resposta:", data);
-  
-      if (response.ok) {
-        console.log("Login bem-sucedido");
-
-              // Cria uma string formatada com as informações para o alert
-            const userInfo = `
-            ID: ${data.id}
-            Nome: ${data.name}
-            Email: ${data.email}
-            Endereço: ${data.address.street}, ${data.address.number}, ${data.address.complement}
-            Bairro: ${data.address.neighborhood}
-            Cidade: ${data.address.city}
-            Estado: ${data.address.state}
-            CEP: ${data.address.postalCode}
-            País: ${data.address.country}
-          `;
-        
-          // Exibe um alerta com as informações do usuário
-          alert(userInfo);
-      } else {
-        alert(data);
-      }
-    } catch (error) {
-      alert("Erro nos servidor")
-    }
-  };
+  const router = useRouter;
 
   // Efeito para fechar o modal ao clicar fora dele
   useEffect(() => {
     const handleClickOutside = (event) => {
-      // Verifica se o clique foi do botão esquerdo (0)
       if (
         event.button === 0 &&
         modalRef.current &&
@@ -81,12 +32,64 @@ export default function Login({ onClose }) {
     };
   }, [onClose]);
 
+  // Função para enviar o formulário para o backend
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:8080/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nome,
+          email,
+          password,
+        }),
+      });
+
+      const data = await response.json(); // Assume que o backend retorna um JSON com a resposta
+
+      if (response.ok) {
+        // Caso o login seja bem-sucedido
+        alert("Login bem-sucedido!");
+        
+        // Aqui você pode redirecionar o usuário para uma nova rota
+        // Substitua '/home' pela sua rota desejada
+
+        router.push("/pages/Home");  // Rota para onde o usuário será redirecionado
+
+      } else {
+        // Caso contrário, exibe a mensagem de erro do backend
+        alert(`Erro: ${data.message || "Falha no login"}`);
+      }
+
+      setLoginStatus(response.status); // Atualiza o status HTTP
+    } catch (error) {
+      alert("Erro ao se comunicar com o servidor");
+    }
+  };
+
   return (
     <div className={styles.loginContainer} ref={modalRef}>
       <div className={styles.formEimg}>
         <div className={styles.form} ref={formRef}>
-          <h2>Login</h2>
+          <h2>Cadastro</h2>
           <form onSubmit={handleSubmit}>
+            <div className={styles.inputGroup}>
+              <label className={styles.label} htmlFor="nome">
+                Nome
+              </label>
+              <input
+                type="text"
+                id="nome"
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+                required
+                className={styles.input}
+              />
+            </div>
             <div className={styles.inputGroup}>
               <label className={styles.label} htmlFor="email">
                 Email
@@ -110,16 +113,12 @@ export default function Login({ onClose }) {
                 required
                 className={styles.input}
               />
-              <div className={styles.inputCheckBoxContainer}>
-                <input type="checkbox" />
-                <label className={styles.labelCheckbox}>Lembrar Senha</label>
-              </div>
               <p>
-                Não possui conta? <Link href="/pages/Cadastro">Crie uma agora!</Link>
+                <Link href="">Esqueci a senha</Link>
               </p>
             </div>
             <button type="submit" className={styles.submitButton}>
-              Entrar
+              Cadastrar
             </button>
           </form>
         </div>

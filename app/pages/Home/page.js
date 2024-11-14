@@ -1,3 +1,5 @@
+"use client";
+
 import CarouselCard from "@/app/components/CarouselCarrd";
 import CarouselImage from "@/app/components/CarouselImage";
 import Footer from "@/app/components/Footer";
@@ -5,7 +7,7 @@ import Header from "@/app/components/Header";
 import styles from "./styles.module.scss";
 import Navbar from "@/app/components/NavBar";
 
-export default function Home() {
+export default function Home(){
   const products = [
     { id: 1, title: "Produto 1", price: 100.0, installments: 3 },
     { id: 2, title: "Produto 2", price: 200.0, installments: 5 },

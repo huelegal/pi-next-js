@@ -5,12 +5,12 @@ import { FaUser, FaShoppingCart } from "react-icons/fa"; // Importando ícones d
 import Login from "../../pages/Login/page"; // Verifique se o caminho está correto
 import styles from "./styles.module.scss";
 import Button from "../Button";
+import Link from "next/link";
 
 export default function Header({ isAbsolute, isLoggedIn }) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
- 
- 
+
   const toggleModal = () => {
     if (isModalOpen) {
       closeModal();
@@ -42,16 +42,22 @@ export default function Header({ isAbsolute, isLoggedIn }) {
               className={styles.searchInput} // Estilo da barra de busca
             />
             <nav className={styles.nav}>
-              <FaUser className={styles.icon} /> {/* Ícone de usuário */}
+              <FaUser
+                className={styles.icon}
+                onClick={toggleModal}
+                text="Login"
+                variant="buttonInverse"
+              />{" "}
+              {/* Ícone de usuário */}
               <FaShoppingCart className={styles.icon} />{" "}
               {/* Ícone de carrinho */}
             </nav>
           </>
         ) : (
           <nav className={styles.nav}>
-            <a className={styles.link} href="#home">
+            <Link className={styles.link} href="/pages/Home">
               Home
-            </a>
+            </Link>
             <a className={styles.link} href="#about">
               Sobre
             </a>
@@ -72,12 +78,14 @@ export default function Header({ isAbsolute, isLoggedIn }) {
 
       {isModalOpen && (
         <div
-          className={`${styles.modal} ${isClosing ? styles.close : styles.open
-            }`}
+          className={`${styles.modal} ${
+            isClosing ? styles.close : styles.open
+          }`}
         >
           <div
-            className={`${styles.modalContent} ${isClosing ? styles.fadeOut : styles.fadeIn
-              }`}
+            className={`${styles.modalContent} ${
+              isClosing ? styles.fadeOut : styles.fadeIn
+            }`}
           >
             <Login onClose={closeModal} />
           </div>

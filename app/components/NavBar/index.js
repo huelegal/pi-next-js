@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import styles from "./styles.module.scss"; // Importe seu arquivo de estilos
+import Link from "next/link";
 
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -34,14 +35,14 @@ const Navbar = () => {
           </div>
         </li>
         <li className={styles.navItem}>
-          <a href="/" className={styles.navLink}>
+          <Link href="/pages/Home" className={styles.navLink}>
             Home
-          </a>
+          </Link>
         </li>
         <li className={styles.navItem}>
-          <a href="/products" className={styles.navLink}>
+          <Link href="/pages/Products" className={styles.navLink}>
             Produtos
-          </a>
+          </Link>
         </li>
         <li className={styles.navItem}>
           <a href="/about" className={styles.navLink}>
