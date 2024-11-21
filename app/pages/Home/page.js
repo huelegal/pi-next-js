@@ -6,16 +6,30 @@ import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
 import styles from "./styles.module.scss";
 import Navbar from "@/app/components/NavBar";
+import { useEffect, useRef, useState } from "react";
 
-export default function Home(){
-  const products = [
-    { id: 1, title: "Produto 1", price: 100.0, installments: 3 },
-    { id: 2, title: "Produto 2", price: 200.0, installments: 5 },
-    { id: 3, title: "Produto 3", price: 150.0, installments: 4 },
-    { id: 4, title: "Produto 4", price: 80.0, installments: 2 },
-    { id: 5, title: "Produto 5", price: 120.0, installments: 6 },
-    { id: 6, title: "Produto 6", price: 300.0, installments: 10 },
-  ];
+export default function Home() {
+   // Estado para armazenar os produtos
+   const [products, setProducts] = useState([]);
+    // Limpa a lista de produtos antes de fazer a requisição
+   
+   // Fetch para buscar produtos da API
+   useEffect(() => {
+     const fetchProducts = async () => {
+       try {
+         const response = await fetch("http://192.168.43.96:8093/api/products"); // URL da API
+         if (!response.ok) {
+           throw new Error("Erro ao buscar produtos");
+         }
+         const data = await response.json();
+         setProducts(data);
+       } catch (error) {
+         console.error("Erro na requisição:", error);
+       }
+     };
+ 
+     fetchProducts();
+   }, []);
 
   return (
     <div className={styles.wrapper}>

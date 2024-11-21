@@ -2,15 +2,15 @@ import styles from "./styles.module.scss";
 
 export default function ProductCard({ product }) {
   // Extraindo as propriedades do objeto product
-  const { id, title, price, installments } = product;
+  const { id, title, price, installMents ,img} = product;
 
   // Calculando o valor de cada parcela
-  const installmentValue = (price / installments).toFixed(2);
+  const installmentValue = (price / 10).toFixed(2);
 
   return (
     <div className={styles.card}>
       <img
-        src={`https://picsum.photos/200/200?random=${id}`} // Usando product.id
+        src={img} // Usando product.id
         alt={title} // Usando product.title
         className={styles.image}
       />
@@ -26,7 +26,7 @@ export default function ProductCard({ product }) {
       <p className={styles.description}>A partir de:</p>
       <p className={styles.price}>R$ {price.toFixed(2)}</p>
       <p className={styles.parcel}>
-        ou {installments}x de R$ {installmentValue}
+        ou {10}x de R$ {installmentValue}
       </p>
       <p className={styles.freeShipping}>
         <span className={styles.highlight}>Frrete grátis</span>
