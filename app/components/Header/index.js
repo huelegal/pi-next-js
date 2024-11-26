@@ -55,9 +55,6 @@ export default function Header({ isAbsolute, isLoggedIn }) {
           </>
         ) : (
           <nav className={styles.nav}>
-            <Link className={styles.link} href="/pages/Home">
-              Home
-            </Link>
             <a className={styles.link} href="#about">
               Sobre
             </a>
