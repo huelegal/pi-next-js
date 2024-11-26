@@ -1,22 +1,18 @@
+import Link from "next/link";
 import styles from "./styles.module.scss";
 
 export default function ProductCard({ product }) {
   // Extraindo as propriedades do objeto product
-  const { id, title, price, installMents ,img} = product;
+  const { id, title, price, img } = product;
 
   // Calculando o valor de cada parcela
   const installmentValue = (price / 10).toFixed(2);
 
   return (
     <div className={styles.card}>
-      <img
-        src={img} // Usando product.id
-        alt={title} // Usando product.title
-        className={styles.image}
-      />
-      <h2 className={styles.title}>{title}</h2> {/* Usando product.title */}
+      <img src={img} alt={title} className={styles.image} />
+      <h2 className={styles.title}>{title}</h2>
       <div className={styles.rating}>
-        {/* Exibe 5 estrelas para avaliação */}
         {[...Array(5)].map((_, index) => (
           <span key={index} className={styles.star}>
             ★
@@ -25,13 +21,13 @@ export default function ProductCard({ product }) {
       </div>
       <p className={styles.description}>A partir de:</p>
       <p className={styles.price}>R$ {price.toFixed(2)}</p>
-      <p className={styles.parcel}>
-        ou {10}x de R$ {installmentValue}
-      </p>
+      <p className={styles.parcel}>ou 10x de R$ {installmentValue}</p>
       <p className={styles.freeShipping}>
-        <span className={styles.highlight}>Frrete grátis</span>
+        <span className={styles.highlight}>Frete grátis</span>
       </p>
-      <button className={styles.addButton}>Adicionar ao Carrinho</button>
+      <Link href={`./ProductDescription?id=${id}`} className={styles.addButton}>
+        Adicionar ao Carrinho
+      </Link>
     </div>
   );
 }

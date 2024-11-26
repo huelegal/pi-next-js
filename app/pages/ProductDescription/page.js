@@ -4,8 +4,14 @@ import Header from "@/app/components/Header";
 import styles from "./styles.module.scss";
 import ProductCarousel from "@/app/components/CarouselProduct";
 import VerticalCarousel from "@/app/components/VerticalCarousel";
+import { useSearchParams } from "next/navigation";
 
 export default function ProductDescription() {
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id"); // Obtém o valor do parâmetro "id"
+  // console.log(id);
+  // console.log("cuzao gostoso");
+
   const relatedProducts = [
     { id: 1, image: "/images/teste.png" },
     {
