@@ -5,10 +5,11 @@ import React, { useState } from "react";
 import styles from "./styles.module.scss";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import Link from "next/link"; // Importando o Link do Next.js
 
 export default function ProductCarousel({ products }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const visibleProducts = 5; // número de produtos visíveis de uma vez
+  const visibleProducts = 4; // número de produtos visíveis de uma vez
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) =>
@@ -30,16 +31,23 @@ export default function ProductCarousel({ products }) {
 
   return (
     <div className={styles.carousel}>
-      <button onClick={prevSlide} className={styles.navButton}><KeyboardArrowLeftIcon/></button>
+      <button onClick={prevSlide} className={styles.navButton}>
+        <KeyboardArrowLeftIcon />
+      </button>
       <div className={styles.productContainer}>
         {displayedProducts.map((product, index) => (
           <div key={index} className={styles.product}>
-            <img src={product.image} alt={product.title} />
+            {/* Link envolvendo a imagem */}
+            <Link href={`./ProductDescription?id=${product.id}`} className={styles.imageLink}>
+              <img src={product.img[0]} alt={product.title} className={styles.productImage} />
+            </Link>
             <p>{product.title}</p>
           </div>
         ))}
       </div>
-      <button onClick={nextSlide} className={styles.navButton}><KeyboardArrowRightIcon/></button>
+      <button onClick={nextSlide} className={styles.navButton}>
+        <KeyboardArrowRightIcon />
+      </button>
     </div>
   );
 }

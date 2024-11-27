@@ -65,7 +65,7 @@ export default function ProductDescription() {
             <div className={styles.section1}>
               <div className={styles.imageContainer}>
 
-              <VerticalCarousel images={products} />{" "}
+              <VerticalCarousel images={data ? data.img : []} />{" "}
                 <img
                   src={
                     products.img
@@ -74,7 +74,7 @@ export default function ProductDescription() {
                 />
 
                 <img
-                  src={data ? data.img : "Carregando..."}
+                  src={data ? data.img[0] : "Carregando..."}
                   className={styles.imageProduct}
                 />
               </div>
@@ -91,9 +91,9 @@ export default function ProductDescription() {
             <div className={styles.section2}>
               <div className={styles.section2div1}>
                 <p>Vendido e entregue por: R.B.S! | Em estoque</p>
-                <h1>{data ? "R$"+data.price : "Carregando..."}</h1>
+                <h1>{data ? new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Number(data.price)) : "Carregando..."}</h1>
                 <p>
-                  R$ <strong>{data ? "R$"+data.price : "Carregando..."}</strong>
+                  <strong>{data ? new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Number(data.price)) : "Carregando..."}</strong>
                   <br />
                   Em até 8x de R$ <strong>{data ? (data.price/8).toFixed(2) : "Carregando..."}</strong> sem juros no cartão
                   <br /> Ou em 1x no cartão com <strong>10% OFF</strong>

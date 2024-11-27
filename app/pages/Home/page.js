@@ -11,13 +11,12 @@ import { useEffect, useRef, useState } from "react";
 export default function Home() {
    // Estado para armazenar os produtos
    const [products, setProducts] = useState([]);
-    // Limpa a lista de produtos antes de fazer a requisição
    
    // Fetch para buscar produtos da API
    useEffect(() => {
      const fetchProducts = async () => {
        try {
-         const response = await fetch("http://localhost:8093/api/products"); // URL da API
+         const response = await fetch("http://localhost:8093/api/products");
          if (!response.ok) {
            throw new Error("Erro ao buscar produtos");
          }
@@ -77,10 +76,6 @@ export default function Home() {
               />
             </div>
           </div>
-        </div>
-
-        <div className={styles.carousel}>
-          <CarouselCard products={products} />
         </div>
 
         <div className={`${styles.adsContainer} ${styles.singleContainer}`}>

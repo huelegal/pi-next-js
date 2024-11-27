@@ -4,32 +4,43 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 export default function VerticalCarousel({ images }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(1); // Começa a partir da img[1]
 
-  // Verifica se as imagens são um array e tem pelo menos uma imagem
-  if (!Array.isArray(images) || images.length === 0) {
-    return <p>Sem imagens para exibir.</p>; // Mensagem alternativa se não houver imagens
+  if (!Array.isArray(images) || images.length <= 1) {
+    return <p>Sem imagens para exibir.</p>;
   }
 
+  const visibleImages = 3; // Quantidade de imagens visíveis
+
+  // Função auxiliar para manter o índice dentro do intervalo correto (ignorando img[0])
+  const getNextIndex = (index) => {
+    return index >= images.length - 1 ? 1 : index + 1;
+  };
+
+  const getPrevIndex = (index) => {
+    return index <= 1 ? images.length - 1 : index - 1;
+  };
 
   const handlePrevious = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? Math.max(images.length - 3, 0) : prevIndex - 1
-    );
+    setCurrentIndex((prevIndex) => getPrevIndex(prevIndex));
   };
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === images.length - 3 ? 0 : prevIndex + 1
-    );
+    setCurrentIndex((prevIndex) => getNextIndex(prevIndex));
   };
 
-  // Slice para pegar 3 imagens do array atual
-  const currentImages = images.slice(currentIndex, currentIndex + 3);
+  // Calcula as 3 imagens visíveis a partir do currentIndex
+  const currentImages = [
+    images[currentIndex],
+    images[getNextIndex(currentIndex)],
+    images[getNextIndex(getNextIndex(currentIndex))],
+  ];
 
   return (
     <div className={styles.carouselContainer}>
-      <button onClick={handlePrevious} className={styles.carouselButton}><KeyboardArrowUpIcon/></button>
+      <button onClick={handlePrevious} className={styles.carouselButton}>
+        <KeyboardArrowUpIcon />
+      </button>
       <div className={styles.imageContainer}>
         {currentImages.map((image, index) => (
           <img
@@ -40,7 +51,9 @@ export default function VerticalCarousel({ images }) {
           />
         ))}
       </div>
-      <button onClick={handleNext} className={styles.carouselButton}><KeyboardArrowDownIcon/></button>
+      <button onClick={handleNext} className={styles.carouselButton}>
+        <KeyboardArrowDownIcon />
+      </button>
     </div>
   );
 }
