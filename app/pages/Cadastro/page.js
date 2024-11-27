@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link"; // Importação do Link para redirecionamento
 import styles from "./styles.module.scss";
+import { useRouter } from "next/router";
 
 export default function Cadastro({ onClose }) {
   const [name, setNome] = useState("");
@@ -11,6 +12,8 @@ export default function Cadastro({ onClose }) {
   const [loginStatus, setLoginStatus] = useState(null); // Estado para armazenar o retorno HTTP
   const formRef = useRef(null);
   const modalRef = useRef(null); // Ref para o contêiner do modal
+  const router = useRouter; // Instância para redirecionar
+
 
   // Efeito para fechar o modal ao clicar fora dele
   useEffect(() => {
@@ -35,7 +38,7 @@ export default function Cadastro({ onClose }) {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://192.168.43.96:8093/api/users", {
+      const response = await fetch("http://localhost:8093/api/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -43,7 +46,7 @@ export default function Cadastro({ onClose }) {
         body: JSON.stringify({
           name,
           email,
-          password,
+          password
         }),
       });
 
@@ -52,9 +55,10 @@ export default function Cadastro({ onClose }) {
       if (response.ok) {
         // Caso o cadastro seja bem-sucedido
         alert("Cadastro bem-sucedido!");
-        
         // Redireciona usando o Link, passando o parâmetro 'success' como query string
         setLoginStatus('success'); // Estado para indicar que o cadastro foi bem-sucedido
+
+        router.push("pages/Landing");
       } else {
         // Caso contrário, exibe a mensagem de erro do backend
         alert(`Erro: ${data.message || "Falha no cadastro"}`);

@@ -49,7 +49,7 @@ export default function Header({ isAbsolute, isLoggedIn }) {
                 variant="buttonInverse"
               />{" "}
               {/* Ícone de usuário */}
-              <FaShoppingCart className={styles.icon} />{" "}
+              <FaShoppingCart className={styles.icon}/>{" "}
               {/* Ícone de carrinho */}
             </nav>
           </>

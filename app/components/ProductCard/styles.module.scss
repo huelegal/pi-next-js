@@ -6,13 +6,12 @@
   display: flex; /* Usar flexbox para o layout */
   flex-direction: column; /* Dispor os itens em coluna */
 
-  min-width: 15rem;
+  width: 15rem;
 
   flex-grow: 0;
   overflow: hidden;
 
-  cursor: pointer;
-
+ 
   &:hover {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra ao passar o mouse */
   }
@@ -20,13 +19,25 @@
 
 .image {
   width: 100%; /* Largura total do card */
-  height: auto; /* Altura automática para manter a proporção */
+  max-width: 100%;
+  height: 200px;
   border-radius: 8px; /* Bordas arredondadas da imagem */
 }
+
+.titulo_estrela{
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+ }
 
 .title {
   font-size: 1.5rem; /* Tamanho da fonte do título */
   margin: 12px 0 4px;
+}
+
+.description_ps{
+  height: 100px;
 }
 
 .description {
@@ -70,6 +81,7 @@
   border-radius: 5px; /* Bordas arredondadas do botão */
   cursor: pointer; /* Muda o cursor para mão ao passar sobre o botão */
   transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+  text-decoration: none;
   text-align: center;
   margin-top: 10px; /* Espaçamento acima do botão */
 

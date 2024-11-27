@@ -8,7 +8,7 @@
    gap: 2rem;
 
   .caminho{
-    padding: 0 0 0.8rem 0;
+    padding:  0.8rem 0 0.8rem 0;
     font-size: 0.8rem;
     border-bottom: 0.9px solid rgb(211, 208, 208);
   }
@@ -37,7 +37,8 @@
          justify-content:  space-around;
          
          .imageProduct {
-          width: 500px;
+          max-width: 400px;
+          
         }
       }
      

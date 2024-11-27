@@ -5,70 +5,76 @@ import styles from "./styles.module.scss";
 import ProductCarousel from "@/app/components/CarouselProduct";
 import VerticalCarousel from "@/app/components/VerticalCarousel";
 import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function ProductDescription() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id"); // Obtém o valor do parâmetro "id"
-  // console.log(id);
-  // console.log("cuzao gostoso");
 
-  const relatedProducts = [
-    { id: 1, image: "/images/teste.png" },
-    {
-      id: 2,
-      image:
-        "/images/gel-fixador-condicionante-acao-prolongad-300x615x-71388.png",
-    },
-    { id: 1, image: "/images/teste.png" },
-    {
-      id: 2,
-      image:
-        "/images/gel-fixador-condicionante-acao-prolongad-300x615x-71388.png",
-    },
-    { id: 1, image: "/images/teste.png" },
-    {
-      id: 2,
-      image:
-        "/images/gel-fixador-condicionante-acao-prolongad-300x615x-71388.png",
-    },
-    { id: 1, image: "/images/teste.png" },
-    {
-      id: 2,
-      image:
-        "/images/gel-fixador-condicionante-acao-prolongad-300x615x-71388.png",
-    },
-    { id: 1, image: "/images/teste.png" },
-    {
-      id: 2,
-      image:
-        "/images/gel-fixador-condicionante-acao-prolongad-300x615x-71388.png",
-    },
-  ];
+  const [data, setData] = useState(null);
+  const [products, setProducts] = useState([]);
 
-  // Extrair apenas as URLs das imagens
-  const imageUrls = relatedProducts.map((product) => product.image);
+  // Fetch para buscar produtos da API
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:8093/api/products/${id}`
+        ); // URL da API
+        if (!response.ok) {
+          throw new Error("Erro ao buscar produtos");
+        }
+        const productData = await response.json(); // Armazena a resposta no estado
+        setData(productData); // Atualiza o estado
+      } catch (error) {
+        console.error("Erro na requisição:", error);
+      }
+    };
+
+    if (id) fetchProducts(); // Faz o fetch apenas se o ID existir
+  }, [id]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("http://localhost:8093/api/products"); // URL da API
+        if (!response.ok) {
+          throw new Error("Erro ao buscar produtos");
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Erro na requisição:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
 
   return (
     <>
-      <Header />
+      <Header isLoggedIn={true}/>
       <div className={styles.container}>
         <p className={styles.caminho}>
-          Você está em: Periféricos / Cabos e Adaptadores Cabos VGA / Código:
-          483251
+           {data ? `products / ${data.title}` : "Carregando..."}
         </p>
-        <h1>
-          Placa de Video RTX 3060 Palit NVIDIA GeForce, 12GB GDDR6, RGB, DLSS,
-          G-Sync, Ray Tracing - NE63060019K9-190AD
-        </h1>
+        <h1>{data ? data.title : "Carregando..."}</h1>
         <div className={styles.containerSections}>
           <section className={styles.containersection1}>
             <div className={styles.section1}>
               <div className={styles.imageContainer}>
-                <VerticalCarousel images={imageUrls} />{" "}
+
+              <VerticalCarousel images={products} />{" "}
                 <img
                   src={
-                    "/images/gel-fixador-condicionante-acao-prolongad-300x615x-71388.png"
+                    products.img
                   }
+                  className={styles.imageProduct}
+                />
+
+                <img
+                  src={data ? data.img : "Carregando..."}
                   className={styles.imageProduct}
                 />
               </div>
@@ -85,11 +91,11 @@ export default function ProductDescription() {
             <div className={styles.section2}>
               <div className={styles.section2div1}>
                 <p>Vendido e entregue por: R.B.S! | Em estoque</p>
-                <h1>R$ 1.659,99</h1>
+                <h1>{data ? "R$"+data.price : "Carregando..."}</h1>
                 <p>
-                  R$ <strong>223,52</strong>
+                  R$ <strong>{data ? "R$"+data.price : "Carregando..."}</strong>
                   <br />
-                  Em até 8x de R$ <strong>27,94</strong> sem juros no cartão
+                  Em até 8x de R$ <strong>{data ? (data.price/8).toFixed(2) : "Carregando..."}</strong> sem juros no cartão
                   <br /> Ou em 1x no cartão com <strong>10% OFF</strong>
                 </p>
                 <a>Ver mais opções de pagamento</a>
@@ -101,7 +107,7 @@ export default function ProductDescription() {
             <div className={styles.section22}>
               <h3>Produtos relacionados</h3>
               {/* Carrossel de produtos relacionados */}
-              <ProductCarousel products={relatedProducts} />
+              <ProductCarousel products={products} />
             </div>
           </section>
         </div>

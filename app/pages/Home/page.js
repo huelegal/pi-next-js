@@ -1,4 +1,4 @@
-"use client";
+"use client"; // Adicione isso no início do arquivo
 
 import CarouselCard from "@/app/components/CarouselCarrd";
 import CarouselImage from "@/app/components/CarouselImage";
@@ -17,7 +17,7 @@ export default function Home() {
    useEffect(() => {
      const fetchProducts = async () => {
        try {
-         const response = await fetch("http://192.168.43.96:8093/api/products"); // URL da API
+         const response = await fetch("http://localhost:8093/api/products"); // URL da API
          if (!response.ok) {
            throw new Error("Erro ao buscar produtos");
          }
@@ -47,7 +47,6 @@ export default function Home() {
 
         <div className={styles.carousel}>
           <h3>Mais Procurados</h3>
-
           <CarouselCard products={products} />
         </div>
 

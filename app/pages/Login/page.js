@@ -1,8 +1,8 @@
 "use client";
 
+import { useRouter } from "next/navigation"; // Para redirecionamento
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation"; // Para redirecionamento
 import styles from "./styles.module.scss";
 
 export default function Login({ onClose }) {
@@ -16,29 +16,27 @@ export default function Login({ onClose }) {
   const handleSubmit = async (e) => {
 
     e.preventDefault();
-    router.push("pages/Home");
+    setErrorMessage(null); // Limpa mensagem de erro antes do envio
 
-    // setErrorMessage(null); // Limpa mensagem de erro antes do envio
+    try {
+      const response = await fetch("http://localhost:8093/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-    // try {
-    //   const response = await fetch("http://localhost:8093/api/users/login", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ email, password }),
-    //   });
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Login bem-sucedido:", data.email, data.password);
 
-    //   if (response.ok) {
-    //     const data = await response.json();
-    //     console.log("Login bem-sucedido:", data);
-
-    //     // Redireciona para a home
-    //     router.push("./Home");
-    //   }
-    // } catch (error) {
-    //   setErrorMessage("Erro no servidor. Tente novamente mais tarde.");
-    // }
+        // Redireciona para a home
+        router.push(`./pages/Home?id=${data.id}`);
+      }
+    } catch (error) {
+      setErrorMessage(error);
+    }
   };
 
   // Efeito para fechar o modal ao clicar fora dele
