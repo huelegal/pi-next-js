@@ -1,7 +1,6 @@
 "use client"; // Adicione isso no início do arquivo
 
 import CarouselCard from "@/app/components/CarouselCarrd";
-import CarouselImage from "@/app/components/CarouselImage";
 import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
 import styles from "./styles.module.scss";

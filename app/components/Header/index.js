@@ -36,11 +36,7 @@ export default function Header({ isAbsolute, isLoggedIn }) {
 
         {isLoggedIn ? (
           <>
-            <input
-              type="text"
-              placeholder="Buscar..."
-              className={styles.searchInput} // Estilo da barra de busca
-            />
+          
             <nav className={styles.nav}>
               <FaUser
                 className={styles.icon}

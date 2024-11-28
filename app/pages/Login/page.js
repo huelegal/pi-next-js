@@ -30,10 +30,11 @@ export default function Login({ onClose }) {
         const data = await response.json();
         console.log("Login bem-sucedido:", data.email, data.password);
         
-        
+      //Armazena o ID do usuário no localStorage
+      localStorage.setItem("userId", data.id);
 
         // Redireciona para a home
-        router.push(`./pages/Home?id=${data.id}`);
+        router.push(`./pages/Home`);
       } else {
         // Se o status for 401 (não autorizado) ou outro erro, lida com isso
         const errorData = await response.text(); // Recebe o erro como texto

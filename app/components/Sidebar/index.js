@@ -1,80 +1,38 @@
+"use client"; // Next.js Client Component
+
+import React from "react";
 import styles from "./styles.module.scss";
 
-export default function Sidebar() {
+export default function Sidebar({ categories, selectedCategories, setSelectedCategories }) {
+  // Função para alternar entre selecionar ou desmarcar a categoria
+  const handleCategoryChange = (categoryName) => {
+    // Verifica se a categoria já está selecionada
+    if (selectedCategories.includes(categoryName)) {
+      // Se já estiver selecionada, remove da lista
+      setSelectedCategories(selectedCategories.filter((category) => category !== categoryName));
+    } else {
+      // Caso contrário, adiciona na lista
+      setSelectedCategories([...selectedCategories, categoryName]);
+    }
+  };
+
   return (
     <aside className={styles.sidebar}>
       <div className={styles.category}>
         <h3>Categorias</h3>
         <ul>
-          <li>
-            <a href="#">Eletrônicos</a>
-          </li>
-          <li>
-            <a href="#">Roupas</a>
-          </li>
-          <li>
-            <a href="#">Acessórios</a>
-          </li>
-          <li>
-            <a href="#">Promoções</a>
-          </li>
-        </ul>
-      </div>
-
-      <div className={styles.category}>
-        <h3>Marca</h3>
-        <ul className={styles.checkboxList}>
-          <li>
-            <label>
-              <input type="checkbox" />
-              Marca A
-            </label>
-          </li>
-          <li>
-            <label>
-              <input type="checkbox" />
-              Marca B
-            </label>
-          </li>
-          <li>
-            <label>
-              <input type="checkbox" />
-              Marca C
-            </label>
-          </li>
-        </ul>
-      </div>
-
-      <div className={styles.category}>
-        <h3>Cor</h3>
-        <ul>
-          <li>
-            <a href="#">Vermelho</a>
-          </li>
-          <li>
-            <a href="#">Azul</a>
-          </li>
-          <li>
-            <a href="#">Verde</a>
-          </li>
-        </ul>
-      </div>
-
-      <div className={styles.category}>
-        <h3>Tamanho</h3>
-        <ul>
-          <li>
-            <a href="#">P</a>
-          </li>
-          <li>
-            <a href="#">M</a>
-          </li>
-          <li>
-            <a href="#">G</a>
-          </li>
-          <li>
-            <a href="#">GG</a>
-          </li>
+          {categories.map((category) => (
+            <li key={category._id}>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={selectedCategories.includes(category.name)}
+                  onChange={() => handleCategoryChange(category.name)}
+                />
+                {category.name}
+              </label>
+            </li>
+          ))}
         </ul>
       </div>
     </aside>

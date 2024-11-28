@@ -14,6 +14,7 @@ export default function ProductDescription() {
   const [data, setData] = useState(null);
   const [products, setProducts] = useState([]);
 
+  
   // Fetch para buscar produtos da API
   useEffect(() => {
     const fetchProducts = async () => {
