@@ -159,9 +159,18 @@
   cursor: pointer;
   /* Muda o cursor para indicar que é clicável */
 
+  text-transform: none;
+  text-decoration: none;
+  color: #fff;
+
   transition: all 0.3s;
 
   &:hover {
     transform: scale(1.1);
   }
+}
+
+.iconLink {
+  display: flex;
+  align-items: center;
 }

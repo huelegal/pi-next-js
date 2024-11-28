@@ -16,7 +16,7 @@ export default function Login({ onClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage(null); // Limpa a mensagem de erro antes do envio
-  
+
     try {
       const response = await fetch("http://localhost:8093/api/users/login", {
         method: "POST",
@@ -25,16 +25,16 @@ export default function Login({ onClose }) {
         },
         body: JSON.stringify({ email, password }),
       });
-  
+
       if (response.ok) {
         const data = await response.json();
         console.log("Login bem-sucedido:", data.email, data.password);
-        
-      //Armazena o ID do usuário no localStorage
-      localStorage.setItem("userId", data.id);
+
+        //Armazena o ID do usuário no localStorage
+        localStorage.setItem("userId", data.id);
 
         // Redireciona para a home
-        router.push(`./pages/Home`);
+        router.push(`./Home`);
       } else {
         // Se o status for 401 (não autorizado) ou outro erro, lida com isso
         const errorData = await response.text(); // Recebe o erro como texto

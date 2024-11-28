@@ -5,17 +5,26 @@ import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
 import styles from "./styles.module.scss";
 import Navbar from "@/app/components/NavBar";
+import { useRouter } from "next/navigation"; // Para redirecionamento
+
 import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
+  const router = useRouter();
   // Estado para armazenar os produtos
   const [products, setProducts] = useState([]);
+  const userId = localStorage.getItem("userId");
 
-  console.log(localStorage.getItem("userId"));
-
-  // Fetch para buscar produtos da API
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchProductsAndCheckAuth = async () => {
+      console.log("variavel" + userId);
+
+      if (!userId) {
+        router.push("./Landing");
+        return; // Sai da função para evitar executar o fetch
+      }
+
+      // Busca produtos
       try {
         const response = await fetch("http://localhost:8093/api/products");
         if (!response.ok) {
@@ -28,7 +37,7 @@ export default function Home() {
       }
     };
 
-    fetchProducts();
+    fetchProductsAndCheckAuth();
   }, []);
 
   return (

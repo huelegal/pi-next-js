@@ -6,8 +6,9 @@ import Login from "../../pages/Login/page"; // Verifique se o caminho está corr
 import styles from "./styles.module.scss";
 import Button from "../Button";
 import Link from "next/link";
+import { RiLogoutBoxLine } from "react-icons/ri";
 
-export default function Header({ isAbsolute, isLoggedIn }) {
+export default function Header({ isAbsolute, isLoggedIn, setIsLoggedIn }) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
 
@@ -27,6 +28,11 @@ export default function Header({ isAbsolute, isLoggedIn }) {
     }, 300); // Tempo igual ao da animação de saída
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("userId"); // Remove o ID do usuário
+    setIsLoggedIn(false); // Atualiza o estado de login
+  };
+
   return (
     <>
       <header
@@ -37,12 +43,14 @@ export default function Header({ isAbsolute, isLoggedIn }) {
         {isLoggedIn ? (
           <>
             <nav className={styles.nav}>
-              <FaUser
-                className={styles.icon}
-                onClick={toggleModal}
-                text="Login"
-                variant="buttonInverse"
-              />{" "}
+              <Link href="./Landing" className={styles.iconLink}>
+                <RiLogoutBoxLine
+                  className={styles.icon}
+                  text="Logout"
+                  onClick={handleLogout} // Chama a função de logout ao clicar
+                  variant="buttonInverse"
+                />{" "}
+              </Link>
               <Link href="/pages/Cart" className={styles.navLink}>
                 <FaShoppingCart className={styles.icon} />{" "}
               </Link>

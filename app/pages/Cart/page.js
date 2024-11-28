@@ -1,76 +1,143 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import MiniProductCard from "@/app/components/MiniProductCard";
 import Header from "@/app/components/Header";
-import Footer from "@/app/components/Footer";
+import { useState, useEffect } from "react";
 import styles from "./styles.module.scss";
+import Footer from "@/app/components/Footer";
+import debounce from "lodash.debounce"; // Importando debounce do lodash
 
 export default function Cart() {
   const [shipping, setShipping] = useState("");
   const [promoCode, setPromoCode] = useState("");
-  const [products, setProducts] = useState([]); // Inicializando como array vazio
-  const [loading, setLoading] = useState(true); // Para controlar o carregamento dos produtos
+  const [cart, setCart] = useState(null); // Agora é um objeto, não um array
+  const [loading, setLoading] = useState(true);
 
-  // Função para pegar os produtos do carrinho
-  const fetchCartItems = async (userId) => {
-    try {
-      const response = await fetch(`http://localhost:8093/api/cart/${userId}`);
-      if (response.ok) {
-        const data = await response.json();
-        // Verifica se data é um array
-        if (Array.isArray(data)) {
-          setProducts(data); // Atualiza o estado com os produtos recebidos
-        } else {
-          console.error("A resposta da API não é um array");
-          setProducts([]); // Define como array vazio caso não seja um array
-        }
-      } else {
-        console.error("Erro ao buscar os itens do carrinho");
-        setProducts([]); // Caso a requisição falhe, inicializa com array vazio
-      }
-    } catch (error) {
-      console.error("Erro na requisição:", error);
-      setProducts([]); // Caso haja erro, inicializa com array vazio
-    } finally {
-      setLoading(false); // Finaliza o carregamento
-    }
-  };
-
-  // Efeito para pegar o userId e buscar os itens ao carregar o componente
   useEffect(() => {
-    const userId = localStorage.getItem("userId"); // Obtendo o ID do usuário do localStorage
+    const userId = localStorage.getItem("userId");
+
     if (userId) {
-      fetchCartItems(userId); // Chama a função para pegar os itens do carrinho
-    } else {
-      setLoading(false); // Se não houver userId, para o carregamento
+      fetchCart(userId);
     }
   }, []);
 
-  // Funções para manipulação do carrinho
-  const handleRemove = (index) => {
-    const newProducts = products.filter((_, i) => i !== index);
-    setProducts(newProducts);
+  const fetchCart = async (userId) => {
+    try {
+      const response = await fetch(`http://localhost:8093/api/cart/${userId}`);
+      const data = await response.json();
+      setCart(data); // Atualiza o estado com o objeto do carrinho
+    } catch (error) {
+      console.error("Erro ao buscar carrinho:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleRemove = async (index) => {
+    const userId = localStorage.getItem("userId");
+    const productId = cart.items[index].productId;
+
+    if (userId) {
+      try {
+        const response = await fetch(
+          `http://localhost:8093/api/cart/${userId}?productId=${productId}`,
+          {
+            method: "DELETE",
+          }
+        );
+
+        if (response.ok) {
+          console.log("Item removido com sucesso!");
+          fetchCart(userId); // Recarrega o carrinho atualizado
+        } else {
+          console.error("Erro ao remover item do carrinho.");
+        }
+      } catch (error) {
+        console.error("Erro na requisição de remoção:", error);
+      }
+    }
   };
 
   const updateQuantity = (index, newQuantity) => {
-    const newProducts = [...products];
-    newProducts[index].quantity = newQuantity;
-    setProducts(newProducts);
+    const newItems = [...cart.items];
+    newItems[index].quantity = newQuantity;
+    setCart({ ...cart, items: newItems }); // Atualiza o estado com a nova quantidade
+
+    const userId = localStorage.getItem("userId");
+    const productId = newItems[index].productId;
+
+    if (userId) {
+      debounceUpdateQuantity(userId, productId, newQuantity);
+    }
   };
 
   const calculateTotal = () => {
-    return products
-      .reduce((total, product) => total + product.price * product.quantity, 0)
+    return cart.items
+      .reduce(
+        (total, product) => total + product.unitPrice * product.quantity,
+        0
+      )
       .toFixed(2);
   };
 
-  const handleCheckout = () => {
-    console.log("Checkout iniciado");
+  const handleCheckout = async () => {
+    const userId = localStorage.getItem("userId");
+
+    if (userId) {
+      try {
+        // Envia o pedido para a API
+        const response = await fetch(
+          `http://localhost:8093/api/orders/${userId}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              items: cart.items, // Passa os itens do carrinho
+              totalAmount: calculateTotal(), // Passa o valor total
+              userId: userId, // Passa o ID do usuário
+            }),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Erro ao processar o checkout");
+        }
+
+        // Após finalizar o pedido, recarrega o carrinho (que estará vazio após a compra)
+        fetchCart(userId); // Carrinho atualizado (agora vazio)
+
+        console.log("Compra realizada com sucesso!");
+      } catch (error) {
+        console.error("Erro ao finalizar compra:", error);
+      }
+    }
   };
 
+  const updateCartItemAPI = async (userId, productId, quantity) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8093/api/cart/${userId}/update-item/${productId}?quantity=${quantity}`,
+        {
+          method: "PUT",
+        }
+      );
+
+      if (response.ok) {
+        console.log("Quantidade do produto atualizada com sucesso!");
+      } else {
+        console.error("Erro ao atualizar quantidade do produto.");
+      }
+    } catch (error) {
+      console.error("Erro ao fazer a requisição:", error);
+    }
+  };
+
+  const debounceUpdateQuantity = debounce(updateCartItemAPI, 500);
+
   if (loading) {
-    return <div>Carregando...</div>; // Exibe um texto de carregamento enquanto os dados não são carregados
+    return <div>Carregando...</div>;
   }
 
   return (
@@ -82,7 +149,7 @@ export default function Cart() {
           <div className={styles.productContent}>
             <div className={styles.title}>
               <h1>Carrinho de compras</h1>
-              <h1>{products.length} Itens</h1>
+              <h1>{cart.items.length} Itens</h1>
             </div>
 
             <div className={styles.labels}>
@@ -93,30 +160,26 @@ export default function Cart() {
             </div>
 
             <div className={styles.productList}>
-              {Array.isArray(products) && products.length > 0 ? (
-                products.map((product, index) => (
-                  <MiniProductCard
-                    key={index}
-                    details={product.items.title}
-                    price={product.price}
-                    type={product.type}
-                    quantity={product.quantity}
-                    onQuantityChange={(newQuantity) =>
-                      updateQuantity(index, newQuantity)
-                    }
-                    onRemove={() => handleRemove(index)}
-                  />
-                ))
-              ) : (
-                <div>Sem produtos no carrinho</div>
-              )}
+              {cart.items.map((product, index) => (
+                <MiniProductCard
+                  key={index}
+                  details={product.productName}
+                  price={product.unitPrice}
+                  image={product.img}
+                  quantity={product.quantity}
+                  onQuantityChange={(newQuantity) =>
+                    updateQuantity(index, newQuantity)
+                  }
+                  onRemove={() => handleRemove(index)}
+                />
+              ))}
             </div>
           </div>
 
           <div className={styles.sidebar}>
             <h1 className={styles.sideTitle}>Sumário</h1>
             <div className={styles.summaryItem}>
-              <span>{products.length} itens</span>
+              <span>{cart.items.length} itens</span>
               <span>R$ {calculateTotal()}</span>
             </div>
 
