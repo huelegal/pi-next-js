@@ -1,20 +1,53 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import MiniProductCard from "@/app/components/MiniProductCard";
 import Header from "@/app/components/Header";
-import { useState } from "react";
-import styles from "./styles.module.scss";
 import Footer from "@/app/components/Footer";
+import styles from "./styles.module.scss";
 
 export default function Cart() {
   const [shipping, setShipping] = useState("");
   const [promoCode, setPromoCode] = useState("");
+  const [products, setProducts] = useState([]); // Inicializando como array vazio
+  const [loading, setLoading] = useState(true); // Para controlar o carregamento dos produtos
 
-  const [products, setProducts] = useState([
-    { details: "Produto 1", price: 10.0, type: "Tipo A", quantity: 1 },
-    { details: "Produto 2", price: 15.0, type: "Tipo B", quantity: 1 },
-  ]);
+  // Função para pegar os produtos do carrinho
+  const fetchCartItems = async (userId) => {
+    try {
+      const response = await fetch(`http://localhost:8093/api/cart/${userId}`);
+      if (response.ok) {
+        const data = await response.json();
+        // Verifica se data é um array
+        if (Array.isArray(data)) {
+          setProducts(data); // Atualiza o estado com os produtos recebidos
+        } else {
+          console.error("A resposta da API não é um array");
+          setProducts([]); // Define como array vazio caso não seja um array
+        }
+      } else {
+        console.error("Erro ao buscar os itens do carrinho");
+        setProducts([]); // Caso a requisição falhe, inicializa com array vazio
+      }
+    } catch (error) {
+      console.error("Erro na requisição:", error);
+      setProducts([]); // Caso haja erro, inicializa com array vazio
+    } finally {
+      setLoading(false); // Finaliza o carregamento
+    }
+  };
 
+  // Efeito para pegar o userId e buscar os itens ao carregar o componente
+  useEffect(() => {
+    const userId = localStorage.getItem("userId"); // Obtendo o ID do usuário do localStorage
+    if (userId) {
+      fetchCartItems(userId); // Chama a função para pegar os itens do carrinho
+    } else {
+      setLoading(false); // Se não houver userId, para o carregamento
+    }
+  }, []);
+
+  // Funções para manipulação do carrinho
   const handleRemove = (index) => {
     const newProducts = products.filter((_, i) => i !== index);
     setProducts(newProducts);
@@ -36,6 +69,10 @@ export default function Cart() {
     console.log("Checkout iniciado");
   };
 
+  if (loading) {
+    return <div>Carregando...</div>; // Exibe um texto de carregamento enquanto os dados não são carregados
+  }
+
   return (
     <>
       <Header />
@@ -56,19 +93,23 @@ export default function Cart() {
             </div>
 
             <div className={styles.productList}>
-              {products.map((product, index) => (
-                <MiniProductCard
-                  key={index}
-                  details={product.details}
-                  price={product.price}
-                  type={product.type}
-                  quantity={product.quantity}
-                  onQuantityChange={(newQuantity) =>
-                    updateQuantity(index, newQuantity)
-                  }
-                  onRemove={() => handleRemove(index)}
-                />
-              ))}
+              {Array.isArray(products) && products.length > 0 ? (
+                products.map((product, index) => (
+                  <MiniProductCard
+                    key={index}
+                    details={product.items.title}
+                    price={product.price}
+                    type={product.type}
+                    quantity={product.quantity}
+                    onQuantityChange={(newQuantity) =>
+                      updateQuantity(index, newQuantity)
+                    }
+                    onRemove={() => handleRemove(index)}
+                  />
+                ))
+              ) : (
+                <div>Sem produtos no carrinho</div>
+              )}
             </div>
           </div>
 

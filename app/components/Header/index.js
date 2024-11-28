@@ -36,7 +36,6 @@ export default function Header({ isAbsolute, isLoggedIn }) {
 
         {isLoggedIn ? (
           <>
-          
             <nav className={styles.nav}>
               <FaUser
                 className={styles.icon}
@@ -44,9 +43,9 @@ export default function Header({ isAbsolute, isLoggedIn }) {
                 text="Login"
                 variant="buttonInverse"
               />{" "}
-              {/* Ícone de usuário */}
-              <FaShoppingCart className={styles.icon}/>{" "}
-              {/* Ícone de carrinho */}
+              <Link href="/pages/Cart" className={styles.navLink}>
+                <FaShoppingCart className={styles.icon} />{" "}
+              </Link>
             </nav>
           </>
         ) : (

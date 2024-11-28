@@ -8,31 +8,33 @@ import Navbar from "@/app/components/NavBar";
 import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
-   // Estado para armazenar os produtos
-   const [products, setProducts] = useState([]);
-   
-   // Fetch para buscar produtos da API
-   useEffect(() => {
-     const fetchProducts = async () => {
-       try {
-         const response = await fetch("http://localhost:8093/api/products");
-         if (!response.ok) {
-           throw new Error("Erro ao buscar produtos");
-         }
-         const data = await response.json();
-         setProducts(data);
-       } catch (error) {
-         console.error("Erro na requisição:", error);
-       }
-     };
- 
-     fetchProducts();
-   }, []);
+  // Estado para armazenar os produtos
+  const [products, setProducts] = useState([]);
+
+  console.log(localStorage.getItem("userId"));
+
+  // Fetch para buscar produtos da API
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("http://localhost:8093/api/products");
+        if (!response.ok) {
+          throw new Error("Erro ao buscar produtos");
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Erro na requisição:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   return (
     <div className={styles.wrapper}>
       <Header isLoggedIn={true} />
-      <Navbar/>
+      <Navbar />
 
       <div className={styles.content}>
         <div>
