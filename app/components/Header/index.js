@@ -75,7 +75,7 @@ export default function Header({ isAbsolute, isLoggedIn, setIsLoggedIn }) {
             <a className={styles.link} href="#services">
               Serviços
             </a>
-            <a className={styles.link} href="#contact">
+            <a className={styles.link} href="#footer">
               Contato
             </a>
             <Button

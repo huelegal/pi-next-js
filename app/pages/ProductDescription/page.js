@@ -102,13 +102,13 @@ export default function ProductDescription() {
                   className={styles.imageProduct}
                 />
               </div>
-              <div className={styles.containerCep}>
+              {/* <div className={styles.containerCep}>
                 <h3>Consultar frete e prazo de entrega</h3>
                 <div className={styles.inputCep}>
                   <input placeholder="Digitar CEP" />
                   <button>OK</button>
                 </div>
-              </div>
+              </div> */}
             </div>
           </section>
           <section className={styles.containersection2}>
@@ -140,7 +140,6 @@ export default function ProductDescription() {
                   sem juros no cartão
                   <br /> Ou em 1x no cartão com <strong>10% OFF</strong>
                 </p>
-                <a>Ver mais opções de pagamento</a>
               </div>
               <div className={styles.section2div2}>
                 <button onClick={handleAddToCart}>
