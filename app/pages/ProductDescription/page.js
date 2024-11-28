@@ -75,7 +75,7 @@ export default function ProductDescription() {
       });
 
       if (response.ok) {
-        console.log("Produto adicionado ao carrinho com sucesso!");
+        alert("Produto adicionado ao carrinho com sucesso!");
       } else {
         console.error("Erro ao adicionar produto ao carrinho.");
       }

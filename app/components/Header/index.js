@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FaUser, FaShoppingCart } from "react-icons/fa"; // Importando ícones da biblioteca react-icons
+import { FaUser, FaShoppingCart, FaClipboardList } from "react-icons/fa"; // Importando ícones da biblioteca react-icons
+import { TbShoppingBagPlus } from "react-icons/tb";
+import { RiLogoutBoxLine } from "react-icons/ri";
+import { IoMdHome } from "react-icons/io";
 import Login from "../../pages/Login/page"; // Verifique se o caminho está correto
 import styles from "./styles.module.scss";
 import Button from "../Button";
 import Link from "next/link";
-import { RiLogoutBoxLine } from "react-icons/ri";
 
 export default function Header({ isAbsolute, isLoggedIn, setIsLoggedIn }) {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -53,6 +55,15 @@ export default function Header({ isAbsolute, isLoggedIn, setIsLoggedIn }) {
               </Link>
               <Link href="/pages/Cart" className={styles.navLink}>
                 <FaShoppingCart className={styles.icon} />{" "}
+              </Link>
+              <Link href="/pages/Products" className={styles.navLink}>
+                <TbShoppingBagPlus className={styles.icon} />{" "}
+              </Link>
+              <Link href="/pages/ComprasRecentes">
+                <FaClipboardList className={styles.icon} />{" "}
+              </Link>
+              <Link href="/pages/Home">
+                <IoMdHome className={styles.icon} />{" "}
               </Link>
             </nav>
           </>

@@ -4,7 +4,6 @@ import CarouselCard from "@/app/components/CarouselCarrd";
 import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
 import styles from "./styles.module.scss";
-import Navbar from "@/app/components/NavBar";
 import { useRouter } from "next/navigation"; // Para redirecionamento
 
 import { useEffect, useRef, useState } from "react";
@@ -43,7 +42,6 @@ export default function Home() {
   return (
     <div className={styles.wrapper}>
       <Header isLoggedIn={true} />
-      <Navbar />
 
       <div className={styles.content}>
         <div>

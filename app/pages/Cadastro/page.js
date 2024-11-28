@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link"; // Importação do Link para redirecionamento
 import styles from "./styles.module.scss";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function Cadastro({ onClose }) {
   const [name, setNome] = useState("");
@@ -12,8 +12,7 @@ export default function Cadastro({ onClose }) {
   const [loginStatus, setLoginStatus] = useState(null); // Estado para armazenar o retorno HTTP
   const formRef = useRef(null);
   const modalRef = useRef(null); // Ref para o contêiner do modal
-  const router = useRouter; // Instância para redirecionar
-
+  const router = useRouter(); // Instância para redirecionar
 
   // Efeito para fechar o modal ao clicar fora dele
   useEffect(() => {
@@ -46,7 +45,7 @@ export default function Cadastro({ onClose }) {
         body: JSON.stringify({
           name,
           email,
-          password
+          password,
         }),
       });
 
@@ -56,17 +55,17 @@ export default function Cadastro({ onClose }) {
         // Caso o cadastro seja bem-sucedido
         alert("Cadastro bem-sucedido!");
         // Redireciona usando o Link, passando o parâmetro 'success' como query string
-        setLoginStatus('success'); // Estado para indicar que o cadastro foi bem-sucedido
+        setLoginStatus("success"); // Estado para indicar que o cadastro foi bem-sucedido
 
-        router.push("pages/Landing");
+        router.push(`./Landing`);
       } else {
         // Caso contrário, exibe a mensagem de erro do backend
         alert(`Erro: ${data.message || "Falha no cadastro"}`);
-        setLoginStatus('error'); // Estado para indicar que houve um erro
+        setLoginStatus("error"); // Estado para indicar que houve um erro
       }
     } catch (error) {
-      alert("Erro ao se comunicar com o servidor");
-      setLoginStatus('error'); // Estado para indicar falha de comunicação
+      console.error(error.message);
+      setLoginStatus("error"); // Estado para indicar falha de comunicação
     }
   };
 
@@ -127,13 +126,9 @@ export default function Cadastro({ onClose }) {
       </div>
 
       {/* Link de redirecionamento usando query params */}
-      {loginStatus === 'success' && (
-        <Link href="/pages/Home"/>
-      )}
+      {loginStatus === "success" && <Link href="/pages/Home" />}
 
-      {loginStatus === 'error' && (
-        <Link href="/home?status=error"/>
-      )}
+      {loginStatus === "error" && <Link href="/home?status=error" />}
     </div>
   );
 }

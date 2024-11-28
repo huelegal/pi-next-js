@@ -108,7 +108,9 @@ export default function Cart() {
         // Após finalizar o pedido, recarrega o carrinho (que estará vazio após a compra)
         fetchCart(userId); // Carrinho atualizado (agora vazio)
 
-        console.log("Compra realizada com sucesso!");
+        alert(
+          "Compra realizada com sucesso! Obrigado por fazer negocio conosco 😊👌"
+        );
       } catch (error) {
         console.error("Erro ao finalizar compra:", error);
       }
@@ -142,7 +144,7 @@ export default function Cart() {
 
   return (
     <>
-      <Header />
+      <Header isLoggedIn={true} />
 
       <div className={styles.wrapper}>
         <div className={styles.cart}>
